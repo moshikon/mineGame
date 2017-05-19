@@ -1,0 +1,9 @@
+<a [ngClass]="{'mine-box': true, 
+'mine-bomb': revealed && mine, 
+'mine-brown': revealed && !mine, 
+'mine-green': !revealed, 
+'mine-flag': !revealed && flag}">
+    <i *ngIf="revealed && !mine" style="font-weight: bold;">
+        {{danger}}
+    </i>
+</a>

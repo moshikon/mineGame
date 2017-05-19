@@ -1,14 +1,15 @@
 .mine-box
 {
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   cursor: pointer;
   display: inline-block;
   height: 56px;
   text-align: center;
   width: 56px;
-  border: 1px double rgb(0, 0, 0);
+  border: 0px none rgb(0, 0, 0);
   border-radius: 50% 50% 50% 50%;
-  font: normal 14.5px / 54px Roboto, sans-serif;
+  font: normal 15.5px / 54px Roboto, sans-serif;
+  background: url("./dot.png");
 }
 
 .mine-bomb{

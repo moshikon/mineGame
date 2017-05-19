@@ -526,7 +526,7 @@ module.exports = ""
 /***/ 612:
 /***/ (function(module, exports) {
 
-module.exports = ".mine-box\r\n{\r\n  color: rgb(0, 0, 0);\r\n  cursor: pointer;\r\n  display: inline-block;\r\n  height: 56px;\r\n  text-align: center;\r\n  width: 56px;\r\n  border: 1px double rgb(0, 0, 0);\r\n  border-radius: 50% 50% 50% 50%;\r\n  font: normal 14.5px / 54px Roboto, sans-serif;\r\n}\r\n\r\n.mine-bomb{\r\n  background-color: rgb(255, 255, 255);\r\n  background: url(../../bomb.png);\r\n  border: 0px none rgb(0, 0, 0);        \r\n  }\r\n\r\n.mine-flag{\r\n  background-color: rgb(255, 255, 255);\r\n  background: url(../../flag.png);\r\n     border: 0px none rgb(0, 0, 0);        \r\n  }\r\n\r\n.mine-green\r\n{\r\n  background-color: #0000ff;\r\n}\r\n\r\n.mine-brown\r\n{\r\n  background-color: rgb(230, 230, 230);\r\n}"
+module.exports = ".mine-box\r\n{\r\n  color: rgb(0, 0, 0);\r\n  cursor: pointer;\r\n  display: inline-block;\r\n  height: 56px;\r\n  text-align: center;\r\n  width: 56px;\r\n  border: 1px double rgb(0, 0, 0);\r\n  border-radius: 50% 50% 50% 50%;\r\n  font: normal 14.5px / 54px Roboto, sans-serif;\r\n}\r\n\r\n.mine-bomb{\r\n  background-color: rgb(255, 255, 255);\r\n  background: url(\"./bomb.png\");\r\n  border: 0px none rgb(0, 0, 0);        \r\n  }\r\n\r\n.mine-flag{\r\n  background-color: rgb(255, 255, 255);\r\n  background: url(\"./flag.png\");\r\n     border: 0px none rgb(0, 0, 0);        \r\n  }\r\n\r\n.mine-green\r\n{\r\n  background-color: #0000ff;\r\n}\r\n\r\n.mine-brown\r\n{\r\n  background-color: rgb(230, 230, 230);\r\n}"
 
 /***/ }),
 

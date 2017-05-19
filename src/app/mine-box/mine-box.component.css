@@ -13,13 +13,13 @@
 
 .mine-bomb{
   background-color: rgb(255, 255, 255);
-  background: url(../../bomb.png);
+  background: url("./bomb.png");
   border: 0px none rgb(0, 0, 0);        
   }
 
 .mine-flag{
   background-color: rgb(255, 255, 255);
-  background: url(../../flag.png);
+  background: url("./flag.png");
      border: 0px none rgb(0, 0, 0);        
   }
 

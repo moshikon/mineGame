@@ -13,7 +13,7 @@
 
 .mine-bomb{
   background-color: rgb(255, 255, 255);
-  background: url(src/bomb.png);
+  background: url(/bomb.png);
   border: 0px none rgb(0, 0, 0);        
   }
 

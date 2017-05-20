@@ -4,8 +4,9 @@ import {MineBox} from './mine-box.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
+
 export class AppComponent {
     width: number;
     height: number;
@@ -13,6 +14,7 @@ export class AppComponent {
     flags: number;
     space: MineBox[][];
     revealedCount: number;
+    revealAll: boolean;
     lost: boolean;
     won: boolean;
     restartTable: boolean;
@@ -20,27 +22,22 @@ export class AppComponent {
 
   constructor() {}
 
-getWon(): boolean{
-    return this.won;
-  }
-
-getLost(): boolean{
-    return this.lost;
-}
-show(): boolean{
-    return (this.restartTable == true)
-}
-
-getWidth(): number{
-    return this.width;
-}
-
-getHeight(): number{
-    return this.height;
-}
-
-getFlags(): number{
-    return this.flags;
+superman(): void{
+    if(this.revealAll){
+        this.revealAll = false;
+        for (let i = 0; i < this.width; i++) {
+            for (let j = 0; j < this.height; j++) {
+                this.space[i][j].setSuperman(false);
+            }
+        }
+    } else{
+        this.revealAll = true;
+        for (let i = 0; i < this.width; i++) {
+            for (let j = 0; j < this.height; j++) {
+                this.space[i][j].setSuperman(true);
+            }
+        }
+    }
 }
 
   onChange() {
@@ -75,6 +72,12 @@ getFlags(): number{
  }
  
   public restart(): void {
+    if(this.restartTable){
+        this.restartTable = false;
+        document.getElementById("myDiv").style.backgroundImage = "url('./back.jpg')";
+        return;
+    }
+    document.getElementById("myDiv").style.backgroundImage = "url('./sky.jpg')";
     this.restartTable = true;
     this.flags = this.mines;
     this.space = [];
@@ -82,6 +85,7 @@ getFlags(): number{
     this.flagsOnMines = 0;
     this.lost = false;
     this.won = false;
+    this.revealAll = false;
     this.generateMineBoxes();
     this.generateMines();
     this.generateDanger();
@@ -205,11 +209,18 @@ getFlags(): number{
             if (this.space[i][j].getMine()) { // ooops this box got mine
                 this.space[i][j].setRevealed(true);
                 this.lost = true;
+                this.revealAll = false;
+                this.superman();
+                document.getElementById("myDiv").style.backgroundImage = "url('./loser.jpg')";
                 return;
             }
             this.expand(i, j);
             if (this.revealedCount === this.width * this.height - this.mines) { // all mine revealed yeah
                 this.won = true;
+                this.revealAll = false;
+                this.superman();
+                document.getElementById("myDiv").style.backgroundImage = "url('./winner.jpg')";
+
             }
         }
     }
@@ -233,6 +244,9 @@ getFlags(): number{
                         this.flagsOnMines++;
                         if(this.flagsOnMines == this.mines){
                             this.won = true;
+                            this.revealAll = false;
+                            this.superman();
+                            document.getElementById("myDiv").style.backgroundImage = "url('./winner.jpg')";
                         }
                     }
                     }

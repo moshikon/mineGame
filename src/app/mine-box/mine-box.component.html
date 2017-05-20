@@ -1,9 +1,12 @@
-<a [ngClass]="{'mine-box': true, 
-'mine-bomb': revealed && mine, 
-'mine-brown': revealed && !mine, 
-'mine-green': !revealed, 
-'mine-flag': !revealed && flag}">
-    <i *ngIf="revealed && !mine" style="font-weight: bold;">
+<a [ngClass]="{'mine-box': true , 
+'mine-bomb': revealed && mine,
+'mine-click': revealed && !mine && !flag,
+'mine-flag': (!revealed && flag && !superman) || (revealed && !mine && flag),
+'mine-superman': superman && !mine,
+'mine-flag-good-superman': superman && flag && mine,
+'mine-flag-bad-superman': superman && flag && !mine,
+'mine-bomb-superman': superman && mine && !revealed}">
+    <i *ngIf="(superman && !mine && (danger>0)) || (revealed && !mine && (danger>0))" style="font: bold;">
         {{danger}}
     </i>
 </a>

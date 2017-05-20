@@ -1,23 +1,29 @@
-<h1 *ngIf="show() && getWon()"> Win </h1>
-<h1 *ngIf="show() && getLost()"> Lost </h1>
+<div id="myDiv">
 <h1>
-  <form>
+  <a *ngIf="!restartTable" id="container" >
   Height:
   <input type="number" [(ngModel)]="height" (change)="onChange()" name="Height" >
   Width:
   <input type="number" [(ngModel)]="width" (change)="onChange()" name="Width" >
   Mines:
   <input type="number" [(ngModel)]="mines" (change)="onChange()" name="Mines" >
-  <button value="clickGame" (click) = "restart()" > New Game </button>
-<h6>Flags left: {{getFlags()}} </h6> 
-</form>
-<table *ngIf= "show()" 
-    id="mineBackground" [ngStyle]="{'width': (getWidth() * (getHeight() ))}">
+  <p> add instructions please<br>
+  <button value="clickGame" (click) = "restart()" > New Game </button></p></a>
+</h1>
+<b *ngIf = "restartTable" id="mid">
+<h2 style="margin-left: 20px" >Need some help? call Superman
+<img  src="./superman.png"  style="cursor:pointer" (click) = "superman()"> 
+<br style="margin-left: 20px">Flags left: <img src="./flag_small.png" > X {{flags}} </h2> 
+<br>
+<button style="margin-left: 20px" value="clickGame" (click) = "restart()" > New Game </button>
+<table  
+    id="mineBackground" [ngStyle]="{'board': (width*height)}">
         <tr *ngFor="let row of space">
         <td *ngFor="let mineBox of row">
-            <app-mine-box [mine]="mineBox.mine" [flag]="mineBox.flag" [revealed]="mineBox.revealed" [danger]="mineBox.danger" (click)="boxClicked($event,mineBox.i, mineBox.j)"></app-mine-box>
+            <app-mine-box [mine]="mineBox.mine" [superman]="mineBox.superman" [flag]="mineBox.flag" [revealed]="mineBox.revealed" [danger]="mineBox.danger" (click)="boxClicked($event,mineBox.i, mineBox.j)"></app-mine-box>
         </td>
     </tr>
 </table>
+</b>
 
-</h1>
+</div>

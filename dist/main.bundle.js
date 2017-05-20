@@ -56,23 +56,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var AppComponent = (function () {
     function AppComponent() {
     }
-    AppComponent.prototype.getWon = function () {
-        return this.won;
-    };
-    AppComponent.prototype.getLost = function () {
-        return this.lost;
-    };
-    AppComponent.prototype.show = function () {
-        return (this.restartTable == true);
-    };
-    AppComponent.prototype.getWidth = function () {
-        return this.width;
-    };
-    AppComponent.prototype.getHeight = function () {
-        return this.height;
-    };
-    AppComponent.prototype.getFlags = function () {
-        return this.flags;
+    AppComponent.prototype.superman = function () {
+        if (this.revealAll) {
+            this.revealAll = false;
+            for (var i = 0; i < this.width; i++) {
+                for (var j = 0; j < this.height; j++) {
+                    this.space[i][j].setSuperman(false);
+                }
+            }
+        }
+        else {
+            this.revealAll = true;
+            for (var i = 0; i < this.width; i++) {
+                for (var j = 0; j < this.height; j++) {
+                    this.space[i][j].setSuperman(true);
+                }
+            }
+        }
     };
     AppComponent.prototype.onChange = function () {
         var max = 300;
@@ -105,6 +105,12 @@ var AppComponent = (function () {
             this.reveal(i, j);
     };
     AppComponent.prototype.restart = function () {
+        if (this.restartTable) {
+            this.restartTable = false;
+            document.getElementById("myDiv").style.backgroundImage = "url('./back.jpg')";
+            return;
+        }
+        document.getElementById("myDiv").style.backgroundImage = "url('./sky.jpg')";
         this.restartTable = true;
         this.flags = this.mines;
         this.space = [];
@@ -112,6 +118,7 @@ var AppComponent = (function () {
         this.flagsOnMines = 0;
         this.lost = false;
         this.won = false;
+        this.revealAll = false;
         this.generateMineBoxes();
         this.generateMines();
         this.generateDanger();
@@ -234,11 +241,17 @@ var AppComponent = (function () {
             if (this.space[i][j].getMine()) {
                 this.space[i][j].setRevealed(true);
                 this.lost = true;
+                this.revealAll = false;
+                this.superman();
+                document.getElementById("myDiv").style.backgroundImage = "url('./loser.jpg')";
                 return;
             }
             this.expand(i, j);
             if (this.revealedCount === this.width * this.height - this.mines) {
                 this.won = true;
+                this.revealAll = false;
+                this.superman();
+                document.getElementById("myDiv").style.backgroundImage = "url('./winner.jpg')";
             }
         }
     };
@@ -261,6 +274,9 @@ var AppComponent = (function () {
                             this.flagsOnMines++;
                             if (this.flagsOnMines == this.mines) {
                                 this.won = true;
+                                this.revealAll = false;
+                                this.superman();
+                                document.getElementById("myDiv").style.backgroundImage = "url('./winner.jpg')";
                             }
                         }
                     }
@@ -274,7 +290,7 @@ var AppComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["U" /* Component */])({
             selector: 'app-root',
             template: __webpack_require__(613),
-            styles: [__webpack_require__(610)]
+            styles: [__webpack_require__(610)],
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
@@ -398,7 +414,14 @@ var MineBox = (function () {
         this.danger = 0;
         this.mine = false;
         this.revealed = false;
+        this.superman = false;
     }
+    MineBox.prototype.setSuperman = function (superman) {
+        this.superman = superman;
+    };
+    MineBox.prototype.getSuperman = function () {
+        return this.superman;
+    };
     MineBox.prototype.setMine = function (mine) {
         this.mine = mine;
     };
@@ -452,6 +475,7 @@ var MineBoxComponent = (function () {
         this.danger = 0;
         this.mine = false;
         this.revealed = false;
+        this.superman = false;
     }
     MineBoxComponent.prototype.ngOnInit = function () {
     };
@@ -479,6 +503,10 @@ var MineBoxComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* Input */])(), 
         __metadata('design:type', Object)
     ], MineBoxComponent.prototype, "revealed", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* Input */])(), 
+        __metadata('design:type', Object)
+    ], MineBoxComponent.prototype, "superman", void 0);
     MineBoxComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["U" /* Component */])({
             selector: 'app-mine-box',
@@ -512,7 +540,7 @@ var environment = {
 /***/ 610:
 /***/ (function(module, exports) {
 
-module.exports = "#mineBackground\r\n{\r\n    background-color: rgb(255, 255, 255);\r\n    margin: 0px auto;\r\n    padding: 20px;\r\n}"
+module.exports = "#mineBackground\r\n{\r\n    background-color: none;\r\n    margin: 0px auto;\r\n    padding: 20px;\r\n}\r\n\r\n#container {\r\n    position: fixed;\r\n    width: 500px;\r\n    height: 300px;\r\n    top: 50%;\r\n    left: 50%;\r\n    margin-top: -150px;\r\n    margin-left: -250px;\r\n    text-align: center;\r\n}\r\n\r\n#container {\r\n    position: fixed;\r\n    width: 500px;\r\n    height: 300px;\r\n    top: 50%;\r\n    left: 50%;\r\n    margin-top: -150px;\r\n    margin-left: -250px;\r\n    text-align: center;\r\n}\r\n\r\n#mid{\r\n    color: #00a3cc; \r\n    font-family: 'Signika', sans-serif; \r\n    padding-bottom: 10px;\r\n    margin: 0px auto;\r\n    margin-left: -20px;\r\n    padding: 20px;\r\n}\r\n\r\n#myDiv{\r\n    width: 100%;\r\n    height: 100%;\r\n    position: fixed;\r\n    background-repeat: repeat;\r\n    background-size: 100%;\r\n}\r\n\r\n\r\n\r\nh1 {\r\n    font-size: 90px;\r\n    font-weight: bold;\r\n    color: #fff;\r\n    text-shadow: 0 1px 4px #000;\r\n    margin-top: 20px;\r\n}\r\n \r\np {\r\n    width: 80%;\r\n    font-size: 23px;\r\n    line-height: 1.3em;\r\n    color: #fff;\r\n    margin: 1.1em auto;\r\n    text-align: center;\r\n    text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);\r\n}"
 
 /***/ }),
 
@@ -526,14 +554,14 @@ module.exports = ""
 /***/ 612:
 /***/ (function(module, exports) {
 
-module.exports = ".mine-box\r\n{\r\n  color: rgb(255, 255, 255);\r\n  cursor: pointer;\r\n  display: inline-block;\r\n  height: 56px;\r\n  text-align: center;\r\n  width: 56px;\r\n  border: 0px none rgb(0, 0, 0);\r\n  border-radius: 50% 50% 50% 50%;\r\n  font: normal 15.5px / 54px Roboto, sans-serif;\r\n  background: url(\"./dot.png\");\r\n}\r\n\r\n.mine-bomb{\r\n  background-color: rgb(255, 255, 255);\r\n  background: url(\"./bomb.png\");\r\n  border: 0px none rgb(0, 0, 0);        \r\n  }\r\n\r\n.mine-flag{\r\n  background-color: rgb(255, 255, 255);\r\n  background: url(\"./flag.png\");\r\n  border: 0px none rgb(0, 0, 0);        \r\n  }\r\n\r\n.mine-green\r\n{\r\n  background-color: #0000ff;\r\n}\r\n\r\n.mine-brown\r\n{\r\n  background-color: rgb(230, 230, 230);\r\n}\r\n"
+module.exports = ".mine-box\r\n{\r\n  box-sizing: border-box;\r\n  color: rgb(255, 255, 255);\r\n  cursor: pointer;\r\n  display: inline-block;\r\n  height: 56px;\r\n  letter-spacing: 0.5px;\r\n  position: relative;\r\n  text-align: center;\r\n  text-decoration: none;\r\n  text-transform: uppercase;\r\n  vertical-align: middle;\r\n  width: 56px;\r\n  z-index: 1;\r\n  -webkit-perspective-origin: 28px 28px;\r\n          perspective-origin: 28px 28px;\r\n  -webkit-transform-origin: 28px 28px;\r\n          transform-origin: 28px 28px;\r\n  border-radius: 50% 50% 50% 50%;\r\n  font: bold 15.5px / 54px Roboto, sans-serif;\r\n  overflow: hidden;\r\n  transition: all 0.3s ease 0s;\r\n  background: url(\"./dot.png\");\r\n}\r\n\r\n\r\n.mine-bomb{\r\n  background: url(\"./bomb_lost.png\");\r\n  border: 0px none  rgb(255, 255, 255);       \r\n  }\r\n\r\n.mine-flag{\r\n  background: url(\"./flag.png\");\r\n  border: 0px none  rgb(255, 255, 255);       \r\n  }\r\n\r\n.mine-superman\r\n{\r\n  color: rgb(255, 255, 255);\r\n  background: url(\"./dot3.png\");\r\n}\r\n\r\n.mine-bomb-superman\r\n{\r\n  background: url(\"./bomb2.png\");\r\n}\r\n\r\n.mine-flag-good-superman\r\n{\r\n  color:  rgb(255, 255, 255);\r\n  background: url(\"./flaggood.png\");\r\n}\r\n\r\n.mine-flag-bad-superman\r\n{\r\n  color:  rgb(255, 255, 255);\r\n    background: url(\"./flagbad.png\");\r\n}\r\n\r\n.mine-click\r\n{\r\n  \r\n  color:  rgb(0, 0, 0);\r\n  background: url(\"./dot2.png\");\r\n\r\n}\r\n"
 
 /***/ }),
 
 /***/ 613:
 /***/ (function(module, exports) {
 
-module.exports = "<h1 *ngIf=\"show() && getWon()\"> Win </h1>\n<h1 *ngIf=\"show() && getLost()\"> Lost </h1>\n<h1>\n  <form>\n  Height:\n  <input type=\"number\" [(ngModel)]=\"height\" (change)=\"onChange()\" name=\"Height\" >\n  Width:\n  <input type=\"number\" [(ngModel)]=\"width\" (change)=\"onChange()\" name=\"Width\" >\n  Mines:\n  <input type=\"number\" [(ngModel)]=\"mines\" (change)=\"onChange()\" name=\"Mines\" >\n  <button value=\"clickGame\" (click) = \"restart()\" > New Game </button>\n<h6>Flags left: {{getFlags()}} </h6> \n</form>\n<table *ngIf= \"show()\" \n    id=\"mineBackground\" [ngStyle]=\"{'width': (getWidth() * (getHeight() ))}\">\n        <tr *ngFor=\"let row of space\">\n        <td *ngFor=\"let mineBox of row\">\n            <app-mine-box [mine]=\"mineBox.mine\" [flag]=\"mineBox.flag\" [revealed]=\"mineBox.revealed\" [danger]=\"mineBox.danger\" (click)=\"boxClicked($event,mineBox.i, mineBox.j)\"></app-mine-box>\n        </td>\n    </tr>\n</table>\n\n</h1>\n"
+module.exports = "<div id=\"myDiv\">\n<h1>\n  <a *ngIf=\"!restartTable\" id=\"container\" >\n  Height:\n  <input type=\"number\" [(ngModel)]=\"height\" (change)=\"onChange()\" name=\"Height\" >\n  Width:\n  <input type=\"number\" [(ngModel)]=\"width\" (change)=\"onChange()\" name=\"Width\" >\n  Mines:\n  <input type=\"number\" [(ngModel)]=\"mines\" (change)=\"onChange()\" name=\"Mines\" >\n  <p> add instructions please<br>\n  <button value=\"clickGame\" (click) = \"restart()\" > New Game </button></p></a>\n</h1>\n<b *ngIf = \"restartTable\" id=\"mid\">\n<h2 style=\"margin-left: 20px\" >Need some help? call Superman\n<img  src=\"../superman.png\"  style=\"cursor:pointer\" (click) = \"superman()\"> \n<br style=\"margin-left: 20px\">Flags left: <img src=\"../flag_small.png\" > X {{flags}} </h2> \n<br>\n<button style=\"margin-left: 20px\" value=\"clickGame\" (click) = \"restart()\" > New Game </button>\n<table  \n    id=\"mineBackground\" [ngStyle]=\"{'board': (width*height)}\">\n        <tr *ngFor=\"let row of space\">\n        <td *ngFor=\"let mineBox of row\">\n            <app-mine-box [mine]=\"mineBox.mine\" [superman]=\"mineBox.superman\" [flag]=\"mineBox.flag\" [revealed]=\"mineBox.revealed\" [danger]=\"mineBox.danger\" (click)=\"boxClicked($event,mineBox.i, mineBox.j)\"></app-mine-box>\n        </td>\n    </tr>\n</table>\n</b>\n\n</div>"
 
 /***/ }),
 
@@ -547,11 +575,11 @@ module.exports = "<p>\n  game works!\n</p>\n"
 /***/ 615:
 /***/ (function(module, exports) {
 
-module.exports = "<a [ngClass]=\"{'mine-box': true, \n'mine-bomb': revealed && mine, \n'mine-brown': revealed && !mine, \n'mine-green': !revealed, \n'mine-flag': !revealed && flag}\">\n    <i *ngIf=\"revealed && !mine\" style=\"font-weight: bold;\">\n        {{danger}}\n    </i>\n</a>\n"
+module.exports = "<a [ngClass]=\"{'mine-box': true , \n'mine-bomb': revealed && mine,\n'mine-click': revealed && !mine && !flag,\n'mine-flag': (!revealed && flag && !superman) || (revealed && !mine && flag),\n'mine-superman': superman && !mine,\n'mine-flag-good-superman': superman && flag && mine,\n'mine-flag-bad-superman': superman && flag && !mine,\n'mine-bomb-superman': superman && mine && !revealed}\">\n    <i *ngIf=\"(superman && !mine && (danger>0)) || (revealed && !mine && (danger>0))\" style=\"font: bold;\">\n        {{danger}}\n    </i>\n</a>\n"
 
 /***/ }),
 
-/***/ 628:
+/***/ 629:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(343);
@@ -559,5 +587,5 @@ module.exports = __webpack_require__(343);
 
 /***/ })
 
-},[628]);
+},[629]);
 //# sourceMappingURL=main.bundle.map

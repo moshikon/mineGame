@@ -35,7 +35,7 @@ exports = module.exports = __webpack_require__(608)();
 
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\n", ""]);
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\n body{\n    background: url(" + __webpack_require__(627) + ");\n    background-repeat: no-repeat;\n    background-size: 100%;\n}\n", ""]);
 
 // exports
 
@@ -352,7 +352,14 @@ function updateLink(linkElement, obj) {
 
 /***/ }),
 
-/***/ 630:
+/***/ 627:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "back.jpg";
+
+/***/ }),
+
+/***/ 631:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(345);
@@ -360,5 +367,5 @@ module.exports = __webpack_require__(345);
 
 /***/ })
 
-},[630]);
+},[631]);
 //# sourceMappingURL=styles.bundle.map

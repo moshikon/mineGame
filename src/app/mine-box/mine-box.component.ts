@@ -12,6 +12,8 @@ export class MineBoxComponent implements OnInit {
     @Input() danger = 0;
     @Input() mine = false;
     @Input() revealed = false;
+    @Input() superman = false;
+
   constructor() { }
 
   ngOnInit() {

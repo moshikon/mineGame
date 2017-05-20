@@ -8,7 +8,7 @@ export class MineBox {
     private mine: boolean;
     private revealed: boolean;
     private flag: boolean;
-
+    private superman: boolean;
 
     constructor(i: number, j: number) {
         this.i = i;
@@ -16,6 +16,15 @@ export class MineBox {
         this.danger = 0;
         this.mine = false;
         this.revealed = false;
+        this.superman = false;
+    }
+
+    setSuperman(superman: boolean): void {
+        this.superman = superman;
+    }
+
+   getSuperman(): boolean {
+        return this.superman;
     }
 
     setMine(mine: boolean): void {

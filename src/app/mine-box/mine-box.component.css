@@ -1,35 +1,65 @@
 .mine-box
 {
+  box-sizing: border-box;
   color: rgb(255, 255, 255);
   cursor: pointer;
   display: inline-block;
   height: 56px;
+  letter-spacing: 0.5px;
+  position: relative;
   text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  vertical-align: middle;
   width: 56px;
-  border: 0px none rgb(0, 0, 0);
+  z-index: 1;
+  perspective-origin: 28px 28px;
+  transform-origin: 28px 28px;
   border-radius: 50% 50% 50% 50%;
-  font: normal 15.5px / 54px Roboto, sans-serif;
+  font: bold 15.5px / 54px Roboto, sans-serif;
+  overflow: hidden;
+  transition: all 0.3s ease 0s;
   background: url("./dot.png");
 }
 
+
 .mine-bomb{
-  background-color: rgb(255, 255, 255);
-  background: url("./bomb.png");
-  border: 0px none rgb(0, 0, 0);        
+  background: url("./bomb_lost.png");
+  border: 0px none  rgb(255, 255, 255);       
   }
 
 .mine-flag{
-  background-color: rgb(255, 255, 255);
   background: url("./flag.png");
-  border: 0px none rgb(0, 0, 0);        
+  border: 0px none  rgb(255, 255, 255);       
   }
 
-.mine-green
+.mine-superman
 {
-  background-color: #0000ff;
+  color: rgb(255, 255, 255);
+  background: url("./dot3.png");
 }
 
-.mine-brown
+.mine-bomb-superman
 {
-  background-color: rgb(230, 230, 230);
+  background: url("./bomb2.png");
+}
+
+.mine-flag-good-superman
+{
+  color:  rgb(255, 255, 255);
+  background: url("./flaggood.png");
+}
+
+.mine-flag-bad-superman
+{
+  color:  rgb(255, 255, 255);
+    background: url("./flagbad.png");
+}
+
+.mine-click
+{
+  
+  color:  rgb(0, 0, 0);
+  background: url("./dot2.png");
+
 }

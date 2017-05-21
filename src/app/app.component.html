@@ -1,21 +1,36 @@
+
 <div id="myDiv">
 <h1>
   <a *ngIf="!restartTable" id="container" >
+  User:
+  <input type="text" [(ngModel)]="user" name="User" >
   Height:
-  <input type="number" [(ngModel)]="height" (change)="onChange()" name="Height" >
+  <input type="text" [(ngModel)]="width" (change)="onChange()" name="Height" >
   Width:
-  <input type="number" [(ngModel)]="width" (change)="onChange()" name="Width" >
+  <input type="text" [(ngModel)]="height" (change)="onChange()" name="Width" >
   Mines:
-  <input type="number" [(ngModel)]="mines" (change)="onChange()" name="Mines" >
-  <p> add instructions please<br>
-  <button value="clickGame" (click) = "restart()" > New Game </button></p></a>
+  <input  type="text" [(ngModel)]="mines" (change)="onChange()" name="Mines" >
+  <p> You can choose a board up to 300x300 cells <br>
+  <button class="myButton" (click) = "restart()" > Custom game </button><br>
+  <button class="myButton" (click) = "generate(3,1)" > Beginner </button>
+  <button class="myButton" (click) = "generate(2,1)" > Normal </button>
+  <button class="myButton" (click) = "generate(1,1)" > Pro </button>
+  <button class="myButton" (click) = "random()" > Surprise me </button>
+  </p></a>
 </h1>
 <b *ngIf = "restartTable" id="mid">
-<h2 style="margin-left: 20px" >Need some help? call Superman
-<img  src="./superman.png"  style="cursor:pointer" (click) = "superman()"> 
-<br style="margin-left: 20px">Flags left: <img src="./flag_small.png" > X {{flags}} </h2> 
+<h3 style="margin-left: 20px" >  
+<div style="font-size: 30px" >Hey {{user}}, <br></div>
+<br >Flags left: <img src="./flag_small.png" > X {{flags}} 
+<br> Time: <b> {{counterMin}}:{{counterSec}}</b>
 <br>
-<button style="margin-left: 20px" value="clickGame" (click) = "restart()" > New Game </button>
+Need some help? call Superman
+<img  src="./superman.png"  style="cursor:pointer" (click) = "superman()"><br>
+<div style="font-size: 25px" >Instructions: </div>
+<div style="font-size: 18px;margin-left: 20px"> Left-click an empty square to reveal it.<br>
+(Shift + Left-click) an empty square to flag it.</div></h3>
+<button style="margin-left: 20px" class="secButton" (click) = "restart()" > New Game </button>
+<button style="margin-left: 20px" class="secButton" (click) = "again()" > Restart </button>
 <table  
     id="mineBackground" [ngStyle]="{'board': (width*height)}">
         <tr *ngFor="let row of space">

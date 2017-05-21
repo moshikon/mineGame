@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {MineBox} from './mine-box.service';
-
+import {SimpleTimer} from 'ng2-simple-timer';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,9 +8,13 @@ import {MineBox} from './mine-box.service';
 })
 
 export class AppComponent {
-    width: number;
-    height: number;
-    mines: number;
+    user: string = 'ANONYMOS';
+    counterSec: number;
+    counterMin: number;
+    start: boolean;
+    width: number = 1;
+    height: number = 1;
+    mines: number = 1;
     flags: number;
     space: MineBox[][];
     revealedCount: number;
@@ -19,8 +23,26 @@ export class AppComponent {
     won: boolean;
     restartTable: boolean;
     flagsOnMines: number;
+    
 
-  constructor() {}
+  constructor(private st: SimpleTimer) {}
+
+    startTimer(){
+        this.st.newTimer('1sec',1);
+        this.st.subscribe('1sec', e => this.timer0callback());
+    }
+    	timer0callback() {
+            if(!this.lost && !this.won){
+                this.counterSec++;
+                if(this.counterSec == 60) {
+                    this.counterSec = 0 ;
+                    this.counterMin++;
+                if(this.counterMin == 60){
+                    this.counterMin = 0;
+                }
+            }
+	    }
+}
 
 superman(): void{
     if(this.revealAll){
@@ -65,18 +87,20 @@ superman(): void{
 }
 
   boxClicked(event,i: number, j: number): void {
+        if(!this.start){
+            this.startTimer();
+            this.start=true;
+            console.log("start");
+        } 
         if(event.shiftKey){
             this.putFlag(i,j);
         }else
         this.reveal(i, j);
  }
- 
-  public restart(): void {
-    if(this.restartTable){
-        this.restartTable = false;
-        document.getElementById("myDiv").style.backgroundImage = "url('./back.jpg')";
-        return;
-    }
+  
+  public again(): void{
+    this.onChange();
+    this.st.delTimer('1sec');
     document.getElementById("myDiv").style.backgroundImage = "url('./sky.jpg')";
     this.restartTable = true;
     this.flags = this.mines;
@@ -86,9 +110,37 @@ superman(): void{
     this.lost = false;
     this.won = false;
     this.revealAll = false;
+    this.counterSec = 0;
+    this.counterMin = 0;
+    this.start = false;
     this.generateMineBoxes();
     this.generateMines();
-    this.generateDanger();
+    this.generateDanger();      
+  }
+
+  public restart(): void {
+    if(this.restartTable){
+        this.restartTable = false;
+        document.getElementById("myDiv").style.backgroundImage = "url('./back.jpg')";
+        this.start = false;
+        return;
+    }
+    this.again();
+  }
+
+  generate(user:number ,level: number){
+    this.width = Math.floor(10 * level/user);
+    this.height = Math.floor(15 * level/user);
+    this.mines = Math.floor(20 * level/user);
+    this.onChange();
+    this.again();
+  }
+    random(){
+        this.width = Math.floor(Math.random() * 15);
+        this.height = Math.floor(Math.random() * 15);
+        this.mines = Math.floor(Math.random() * 10);
+        this.onChange();
+        this.again();
   }
     /**
      * Generate mine of boxes into field

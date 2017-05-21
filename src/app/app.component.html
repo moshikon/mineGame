@@ -1,5 +1,5 @@
-
 <div id="myDiv">
+    <h4 *ngIf="!restartTable"> Minesweeper! </h4>
 <h1>
   <a *ngIf="!restartTable" id="container" >
   User:
@@ -20,12 +20,12 @@
 </h1>
 <b *ngIf = "restartTable" id="mid">
 <h3 style="margin-left: 20px" >  
-<div style="font-size: 30px" >Hey {{user}}, <br></div>
+<h5 >Hello {{user}}, <br></h5>
 <br >Flags left: <img src="./flag_small.png" > X {{flags}} 
 <br> Time: <b> {{counterMin}}:{{counterSec}}</b>
 <br>
 Need some help? call Superman
-<img  src="./superman.png"  style="cursor:pointer" (click) = "superman()"><br>
+<br><img  src="./superman.png"  style="cursor:pointer;margin-left: 330px;margin-top: -45px; position:absolute" (click) = "superman()">
 <div style="font-size: 25px" >Instructions: </div>
 <div style="font-size: 18px;margin-left: 20px"> Left-click an empty square to reveal it.<br>
 (Shift + Left-click) an empty square to flag it.</div></h3>

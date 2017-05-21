@@ -21,7 +21,7 @@ webpackEmptyContext.id = 402;
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(491);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__(516);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__(515);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_app_module__ = __webpack_require__(512);
 
 
@@ -40,7 +40,7 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dyna
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mine_box_service__ = __webpack_require__(514);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mine_box_service__ = __webpack_require__(513);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ng2_simple_timer__ = __webpack_require__(369);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ng2_simple_timer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_ng2_simple_timer__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
@@ -60,8 +60,8 @@ var AppComponent = (function () {
     function AppComponent(st) {
         this.st = st;
         this.user = 'ANONYMOS';
-        this.width = 1;
-        this.height = 1;
+        this.width = 2;
+        this.height = 2;
         this.mines = 1;
     }
     AppComponent.prototype.startTimer = function () {
@@ -101,7 +101,7 @@ var AppComponent = (function () {
     };
     AppComponent.prototype.onChange = function () {
         var max = 300;
-        var min = 1;
+        var min = 2;
         if (this.width > max) {
             this.width = max;
         }
@@ -118,8 +118,8 @@ var AppComponent = (function () {
         if (this.mines > maxMines) {
             this.mines = maxMines;
         }
-        if (this.mines < min) {
-            this.mines = min;
+        if (this.mines < 1) {
+            this.mines = 1;
         }
     };
     AppComponent.prototype.boxClicked = function (event, i, j) {
@@ -342,8 +342,8 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-root',
-            template: __webpack_require__(675),
-            styles: [__webpack_require__(672)],
+            template: __webpack_require__(673),
+            styles: [__webpack_require__(671)],
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ng2_simple_timer__["SimpleTimer"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2_ng2_simple_timer__["SimpleTimer"]) === 'function' && _a) || Object])
     ], AppComponent);
@@ -365,8 +365,7 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_simple_timer__ = __webpack_require__(369);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_simple_timer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_ng2_simple_timer__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(511);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__game_game_component__ = __webpack_require__(513);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__mine_box_mine_box_component__ = __webpack_require__(515);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__mine_box_mine_box_component__ = __webpack_require__(514);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -384,7 +383,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var AppModule = (function () {
     function AppModule() {
     }
@@ -392,8 +390,7 @@ var AppModule = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"])({
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */],
-                __WEBPACK_IMPORTED_MODULE_6__game_game_component__["a" /* GameComponent */],
-                __WEBPACK_IMPORTED_MODULE_7__mine_box_mine_box_component__["a" /* MineBoxComponent */]
+                __WEBPACK_IMPORTED_MODULE_6__mine_box_mine_box_component__["a" /* MineBoxComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -412,43 +409,6 @@ var AppModule = (function () {
 /***/ }),
 
 /***/ 513:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GameComponent; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var GameComponent = (function () {
-    function GameComponent() {
-    }
-    GameComponent.prototype.restartGame = function (width, height, mines) {
-    };
-    GameComponent.prototype.ngOnInit = function () {
-    };
-    GameComponent = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'app-game',
-            template: __webpack_require__(676),
-            styles: [__webpack_require__(673)]
-        }), 
-        __metadata('design:paramtypes', [])
-    ], GameComponent);
-    return GameComponent;
-}());
-//# sourceMappingURL=C:/Users/Moshiko/Desktop/mineGame/src/game.component.js.map
-
-/***/ }),
-
-/***/ 514:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -510,7 +470,7 @@ var MineBox = (function () {
 
 /***/ }),
 
-/***/ 515:
+/***/ 514:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -567,8 +527,8 @@ var MineBoxComponent = (function () {
     MineBoxComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-mine-box',
-            template: __webpack_require__(677),
-            styles: [__webpack_require__(674)]
+            template: __webpack_require__(674),
+            styles: [__webpack_require__(672)]
         }), 
         __metadata('design:paramtypes', [])
     ], MineBoxComponent);
@@ -578,7 +538,7 @@ var MineBoxComponent = (function () {
 
 /***/ }),
 
-/***/ 516:
+/***/ 515:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -594,49 +554,35 @@ var environment = {
 
 /***/ }),
 
+/***/ 671:
+/***/ (function(module, exports) {
+
+module.exports = "#mineBackground\r\n{\r\n    background-color: none;\r\n    margin: 0px auto;\r\n    padding: 20px;\r\n    top: 50%;\r\n    margin-top: -150px;\r\n     }\r\n\r\n#container {\r\n    color: #e6ffff;\r\n    font-size: 60px;\r\n    position: fixed;\r\n    width: 500px;\r\n    height: 800px;\r\n    top: 45%;\r\n    left: 50%;\r\n    margin-top: -150px;\r\n    margin-left: -250px;\r\n    text-align: center;\r\n}\r\n\r\n#mid{\r\n    color: #00a3cc; \r\n    font-family: 'Signika', sans-serif; \r\n    padding-bottom: 10px;\r\n    margin: 0px auto;\r\n    margin-left: -20px;\r\n    padding: 20px;\r\n\r\n}\r\n\r\n#myDiv{\r\n    width: 100%;\r\n    height: 100%;\r\n    position: fixed;\r\n    background-repeat: repeat;\r\n    background-size: 100%;\r\n    right:0;\r\n    left:0;\r\n    top:0;\r\n    bottom:0;\r\n    overflow: auto;\r\n}\r\n\r\ntable{\r\n\tposition: absolute;\r\n    right:0;\r\n    bottom:0;\r\n    left: 40%;\r\n\toverflow: hidden;\r\n\t}\r\n\r\nh1 {\r\n    font-size: 80px;\r\n    font-weight: bold;\r\n    color: #fff;\r\n    text-shadow: 0 1px 4px #000;\r\n    margin-top: 20px;\r\n}\r\n\r\nh3{\r\ntext-shadow:1px 1px 1px rgba(201,201,201,1);\r\nfont-weight:normal;\r\ncolor:#306C73;\r\nletter-spacing:1pt;\r\nword-spacing:2pt;\r\nfont-size:20px;\r\ntext-align:left;\r\nfont-family:georgia, serif;\r\nline-height:1.5;\r\nmargin-left: 20px;\r\n}\r\n\r\nh4 {\r\n\tposition: absolute;\r\n    right:0;\r\n    bottom:0;\r\n    left: 0;\r\n\ttop:-18%;\r\n\tfont-family: \"Avant Garde\", Avantgarde, \"Century Gothic\", CenturyGothic, \"AppleGothic\", sans-serif;\r\n\tfont-size: 92px;\r\n\ttext-align: center;\r\n\ttext-transform: uppercase;\r\n\ttext-rendering: optimizeLegibility;\r\n    color: #e0dfdc;\r\n    letter-spacing: .1em;\r\n    text-shadow: \r\n      0 -1px 0 #fff, \r\n      0 1px 0 #2e2e2e, \r\n      0 2px 0 #2c2c2c, \r\n      0 3px 0 #2a2a2a, \r\n      0 4px 0 #282828, \r\n      0 5px 0 #262626, \r\n      0 6px 0 #242424, \r\n      0 7px 0 #222, \r\n      0 8px 0 #202020, \r\n      0 9px 0 #1e1e1e, \r\n      0 10px 0 #1c1c1c, \r\n      0 11px 0 #1a1a1a, \r\n      0 12px 0 #181818, \r\n      0 13px 0 #161616, \r\n      0 14px 0 #141414, \r\n      0 15px 0 #121212, \r\n      0 22px 30px rgba(0, 0, 0, 0.9);\r\n}\r\n\r\nh5{\r\n  font-size: 45px;\r\n  position: absolute;\r\n  top: -5%;\r\n}\r\n\r\np {\r\n    -webkit-text-stroke: 0.5px black;\r\n    width: 100%;\r\n    height: 100%;\r\n    font-size: 32px;\r\n    line-height: 1.3em;\r\n    color: #fff;\r\n    margin: 1.1em auto;\r\n    text-align: center;\r\n    text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);\r\n}\r\n\r\nb{\r\n    outline: #000 thin\r\n}\r\ninput[type=\"text\"] {\r\n  background: #f0f0f5;\r\n  padding: 2px;\r\n  border: solid 1px #dcdcdc;\r\n  transition: box-shadow 0.3s, border 0.3s;\r\n  font-weight: bold;\r\n}\r\ninput[type=\"text\"]:focus {\r\n  border: solid 1px #707070;\r\n  box-shadow: 0 0 5px 1px #969696;\r\n  background: rgb(250,250,250);\r\n}\r\n\r\n\r\n\r\n.myButton {\r\n\tbox-shadow:inset 0px 1px 0px 0px #ffffff;\r\n\tbackground:linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);\r\n\tfilter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf',GradientType=0);\r\n\tbackground-color:#ededed;\r\n\tborder-radius:6px;\r\n\tborder:1px solid #dcdcdc;\r\n\tdisplay:inline-block;\r\n\tcursor:pointer;\r\n\tcolor:#666666;\r\n\tfont-family:Arial;\r\n\tfont-size:15px;\r\n\tfont-weight:bold;\r\n\tpadding:3px 24px;\r\n\ttext-decoration:none;\r\n\ttext-shadow:0px 1px 0px #ffffff;\r\n}\r\n.myButton:hover {\r\n\tbackground:linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);\r\n\tfilter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed',GradientType=0);\r\n\tbackground-color:#dfdfdf;\r\n}\r\n.myButton:active {\r\n\tposition:relative;\r\n\ttop:1px;\r\n}\r\n\r\n.secButton {\r\n\tbox-shadow:inset 0px 1px 0px 0px #dcecfb;\r\n\tbackground:linear-gradient(to bottom, #bddbfa 5%, #80b5ea 100%);\r\n\tfilter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bddbfa', endColorstr='#80b5ea',GradientType=0);\r\n\tbackground-color:#bddbfa;\r\n\tborder-radius:6px;\r\n\tborder:1px solid #84bbf3;\r\n\tdisplay:inline-block;\r\n\tcursor:pointer;\r\n\tcolor:#344c4c;\r\n\tfont-family:Arial;\r\n\tfont-size:15px;\r\n\tfont-weight:bold;\r\n\tpadding:6px 24px;\r\n\ttext-decoration:none;\r\n\ttext-shadow:0px 1px 0px #528ecc;\r\n}\r\n.secButton:hover {\r\n\tbackground:linear-gradient(to bottom, #80b5ea 5%, #bddbfa 100%);\r\n\tfilter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#80b5ea', endColorstr='#bddbfa',GradientType=0);\r\n\tbackground-color:#80b5ea;\r\n}\r\n.secButton:active {\r\n\tposition:relative;\r\n\ttop:1px;\r\n}\r\n"
+
+/***/ }),
+
 /***/ 672:
-/***/ (function(module, exports) {
-
-module.exports = "#mineBackground\r\n{\r\n    background-color: none;\r\n    margin: 0px auto;\r\n    padding: 20px;\r\n    top: 50%;\r\n    margin-top: -150px;\r\n     }\r\n\r\n#container {\r\n    \r\n    color: #e6ffff;\r\n    font-size: 70px;\r\n    position: fixed;\r\n    width: 500px;\r\n    height: 800px;\r\n    top: 35%;\r\n    left: 50%;\r\n    margin-top: -150px;\r\n    margin-left: -250px;\r\n    text-align: center;\r\n}\r\n\r\n#mid{\r\n    color: #00a3cc; \r\n    font-family: 'Signika', sans-serif; \r\n    padding-bottom: 10px;\r\n    margin: 0px auto;\r\n    margin-left: -20px;\r\n    padding: 20px;\r\n\r\n}\r\n\r\n#myDiv{\r\n    width: 100%;\r\n    height: 100%;\r\n    position: fixed;\r\n    background-repeat: repeat;\r\n    background-size: 100%;\r\n    right:0;\r\n    left:0;\r\n    top:0;\r\n    bottom:0;\r\n    overflow: auto\r\n}\r\n\r\n\r\nh1 {\r\n    font-size: 90px;\r\n    font-weight: bold;\r\n    color: #fff;\r\n    text-shadow: 0 1px 4px #000;\r\n    margin-top: 20px;\r\n\r\n}\r\n\r\nh3{\r\ntext-shadow:1px 1px 1px rgba(201,201,201,1);\r\nfont-weight:normal;\r\ncolor:#306C73;\r\nletter-spacing:1pt;\r\nword-spacing:2pt;\r\nfont-size:20px;\r\ntext-align:left;\r\nfont-family:georgia, serif;\r\nline-height:1.5;\r\nmargin-left: 20px;\r\n}\r\n\r\np {\r\n    -webkit-text-stroke: 0.5px black;\r\n    width: 100%;\r\n    height: 100%;\r\n    font-size: 32px;\r\n    line-height: 1.3em;\r\n    color: #fff;\r\n    margin: 1.1em auto;\r\n    text-align: center;\r\n    text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);\r\n}\r\n\r\nb{\r\n    outline: #000 thin\r\n}\r\ninput[type=\"text\"] {\r\n  background: #f0f0f5;\r\n  padding: 2px;\r\n  border: solid 1px #dcdcdc;\r\n  transition: box-shadow 0.3s, border 0.3s;\r\n  font-weight: bold;\r\n}\r\ninput[type=\"text\"]:focus {\r\n  border: solid 1px #707070;\r\n  box-shadow: 0 0 5px 1px #969696;\r\n  background: rgb(250,250,250);\r\n}\r\n\r\n\r\n\r\n.myButton {\r\n\tbox-shadow:inset 0px 1px 0px 0px #ffffff;\r\n\tbackground:linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);\r\n\tfilter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf',GradientType=0);\r\n\tbackground-color:#ededed;\r\n\tborder-radius:6px;\r\n\tborder:1px solid #dcdcdc;\r\n\tdisplay:inline-block;\r\n\tcursor:pointer;\r\n\tcolor:#666666;\r\n\tfont-family:Arial;\r\n\tfont-size:15px;\r\n\tfont-weight:bold;\r\n\tpadding:3px 24px;\r\n\ttext-decoration:none;\r\n\ttext-shadow:0px 1px 0px #ffffff;\r\n}\r\n.myButton:hover {\r\n\tbackground:linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);\r\n\tfilter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed',GradientType=0);\r\n\tbackground-color:#dfdfdf;\r\n}\r\n.myButton:active {\r\n\tposition:relative;\r\n\ttop:1px;\r\n}\r\n\r\n.secButton {\r\n\tbox-shadow:inset 0px 1px 0px 0px #dcecfb;\r\n\tbackground:linear-gradient(to bottom, #bddbfa 5%, #80b5ea 100%);\r\n\tfilter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bddbfa', endColorstr='#80b5ea',GradientType=0);\r\n\tbackground-color:#bddbfa;\r\n\tborder-radius:6px;\r\n\tborder:1px solid #84bbf3;\r\n\tdisplay:inline-block;\r\n\tcursor:pointer;\r\n\tcolor:#ffffff;\r\n\tfont-family:Arial;\r\n\tfont-size:15px;\r\n\tfont-weight:bold;\r\n\tpadding:6px 24px;\r\n\ttext-decoration:none;\r\n\ttext-shadow:0px 1px 0px #528ecc;\r\n}\r\n.secButton:hover {\r\n\tbackground:linear-gradient(to bottom, #80b5ea 5%, #bddbfa 100%);\r\n\tfilter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#80b5ea', endColorstr='#bddbfa',GradientType=0);\r\n\tbackground-color:#80b5ea;\r\n}\r\n.secButton:active {\r\n\tposition:relative;\r\n\ttop:1px;\r\n}\r\n"
-
-/***/ }),
-
-/***/ 673:
-/***/ (function(module, exports) {
-
-module.exports = ""
-
-/***/ }),
-
-/***/ 674:
 /***/ (function(module, exports) {
 
 module.exports = ".mine-box\r\n{\r\n  box-sizing: border-box;\r\n  color: rgb(255, 255, 255);\r\n  cursor: pointer;\r\n  display: inline-block;\r\n  height: 56px;\r\n  letter-spacing: 0.5px;\r\n  position: relative;\r\n  text-align: center;\r\n  text-decoration: none;\r\n  text-transform: uppercase;\r\n  vertical-align: middle;\r\n  width: 56px;\r\n  z-index: 1;\r\n  -webkit-perspective-origin: 28px 28px;\r\n          perspective-origin: 28px 28px;\r\n  -webkit-transform-origin: 28px 28px;\r\n          transform-origin: 28px 28px;\r\n  border-radius: 50% 50% 50% 50%;\r\n  font: bold 15.5px / 54px Roboto, sans-serif;\r\n  overflow: hidden;\r\n  transition: all 0.3s ease 0s;\r\n  background: url(\"./dot.png\");\r\n}\r\n\r\n\r\n.mine-bomb{\r\n  background: url(\"./bomb_lost.png\");\r\n  border: 0px none  rgb(255, 255, 255);       \r\n  }\r\n\r\n.mine-flag{\r\n  background: url(\"./flag.png\");\r\n  border: 0px none  rgb(255, 255, 255);       \r\n  }\r\n\r\n.mine-superman\r\n{\r\n  color: rgb(255, 255, 255);\r\n  background: url(\"./dot3.png\");\r\n}\r\n\r\n.mine-bomb-superman\r\n{\r\n  background: url(\"./bomb2.png\");\r\n}\r\n\r\n.mine-flag-good-superman\r\n{\r\n  color:  rgb(255, 255, 255);\r\n  background: url(\"./flaggood.png\");\r\n}\r\n\r\n.mine-flag-bad-superman\r\n{\r\n  color:  rgb(255, 255, 255);\r\n    background: url(\"./flagbad.png\");\r\n}\r\n\r\n.mine-click\r\n{\r\n  \r\n  color:  rgb(0, 0, 0);\r\n  background: url(\"./dot2.png\");\r\n\r\n}\r\n"
 
 /***/ }),
 
-/***/ 675:
+/***/ 673:
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<div id=\"myDiv\">\r\n<h1>\r\n  <a *ngIf=\"!restartTable\" id=\"container\" >\r\n  User:\r\n  <input type=\"text\" [(ngModel)]=\"user\" name=\"User\" >\r\n  Height:\r\n  <input type=\"text\" [(ngModel)]=\"width\" (change)=\"onChange()\" name=\"Height\" >\r\n  Width:\r\n  <input type=\"text\" [(ngModel)]=\"height\" (change)=\"onChange()\" name=\"Width\" >\r\n  Mines:\r\n  <input  type=\"text\" [(ngModel)]=\"mines\" (change)=\"onChange()\" name=\"Mines\" >\r\n  <p> You can choose a board up to 300x300 cells <br>\r\n  <button class=\"myButton\" (click) = \"restart()\" > Custom game </button><br>\r\n  <button class=\"myButton\" (click) = \"generate(3,1)\" > Beginner </button>\r\n  <button class=\"myButton\" (click) = \"generate(2,1)\" > Normal </button>\r\n  <button class=\"myButton\" (click) = \"generate(1,1)\" > Pro </button>\r\n  <button class=\"myButton\" (click) = \"random()\" > Surprise me </button>\r\n  </p></a>\r\n</h1>\r\n<b *ngIf = \"restartTable\" id=\"mid\">\r\n<h3 style=\"margin-left: 20px\" >  \r\n<div style=\"font-size: 30px\" >Hey {{user}}, <br></div>\r\n<br >Flags left: <img src=\"./flag_small.png\" > X {{flags}} \r\n<br> Time: <b> {{counterMin}}:{{counterSec}}</b>\r\n<br>\r\nNeed some help? call Superman\r\n<img  src=\"./superman.png\"  style=\"cursor:pointer\" (click) = \"superman()\"><br>\r\n<div style=\"font-size: 25px\" >Instructions: </div>\r\n<div style=\"font-size: 18px;margin-left: 20px\"> Left-click an empty square to reveal it.<br>\r\n(Shift + Left-click) an empty square to flag it.</div></h3>\r\n<button style=\"margin-left: 20px\" class=\"secButton\" (click) = \"restart()\" > New Game </button>\r\n<button style=\"margin-left: 20px\" class=\"secButton\" (click) = \"again()\" > Restart </button>\r\n<table  \r\n    id=\"mineBackground\" [ngStyle]=\"{'board': (width*height)}\">\r\n        <tr *ngFor=\"let row of space\">\r\n        <td *ngFor=\"let mineBox of row\">\r\n            <app-mine-box [mine]=\"mineBox.mine\" [superman]=\"mineBox.superman\" [flag]=\"mineBox.flag\" [revealed]=\"mineBox.revealed\" [danger]=\"mineBox.danger\" (click)=\"boxClicked($event,mineBox.i, mineBox.j)\"></app-mine-box>\r\n        </td>\r\n    </tr>\r\n</table>\r\n</b>\r\n\r\n</div>"
+module.exports = "<div id=\"myDiv\">\r\n    <h4 *ngIf=\"!restartTable\"> Minesweeper! </h4>\r\n<h1>\r\n  <a *ngIf=\"!restartTable\" id=\"container\" >\r\n  User:\r\n  <input type=\"text\" [(ngModel)]=\"user\" name=\"User\" >\r\n  Height:\r\n  <input type=\"text\" [(ngModel)]=\"width\" (change)=\"onChange()\" name=\"Height\" >\r\n  Width:\r\n  <input type=\"text\" [(ngModel)]=\"height\" (change)=\"onChange()\" name=\"Width\" >\r\n  Mines:\r\n  <input  type=\"text\" [(ngModel)]=\"mines\" (change)=\"onChange()\" name=\"Mines\" >\r\n  <p> You can choose a board up to 300x300 cells <br>\r\n  <button class=\"myButton\" (click) = \"restart()\" > Custom game </button><br>\r\n  <button class=\"myButton\" (click) = \"generate(3,1)\" > Beginner </button>\r\n  <button class=\"myButton\" (click) = \"generate(2,1)\" > Normal </button>\r\n  <button class=\"myButton\" (click) = \"generate(1,1)\" > Pro </button>\r\n  <button class=\"myButton\" (click) = \"random()\" > Surprise me </button>\r\n  </p></a>\r\n</h1>\r\n<b *ngIf = \"restartTable\" id=\"mid\">\r\n<h3 style=\"margin-left: 20px\" >  \r\n<h5 >Hello {{user}}, <br></h5>\r\n<br >Flags left: <img src=\"./flag_small.png\" > X {{flags}} \r\n<br> Time: <b> {{counterMin}}:{{counterSec}}</b>\r\n<br>\r\nNeed some help? call Superman\r\n<br><img  src=\"./superman.png\"  style=\"cursor:pointer;margin-left: 330px;margin-top: -45px; position:absolute\" (click) = \"superman()\">\r\n<div style=\"font-size: 25px\" >Instructions: </div>\r\n<div style=\"font-size: 18px;margin-left: 20px\"> Left-click an empty square to reveal it.<br>\r\n(Shift + Left-click) an empty square to flag it.</div></h3>\r\n<button style=\"margin-left: 20px\" class=\"secButton\" (click) = \"restart()\" > New Game </button>\r\n<button style=\"margin-left: 20px\" class=\"secButton\" (click) = \"again()\" > Restart </button>\r\n<table  \r\n    id=\"mineBackground\" [ngStyle]=\"{'board': (width*height)}\">\r\n        <tr *ngFor=\"let row of space\">\r\n        <td *ngFor=\"let mineBox of row\">\r\n            <app-mine-box [mine]=\"mineBox.mine\" [superman]=\"mineBox.superman\" [flag]=\"mineBox.flag\" [revealed]=\"mineBox.revealed\" [danger]=\"mineBox.danger\" (click)=\"boxClicked($event,mineBox.i, mineBox.j)\"></app-mine-box>\r\n        </td>\r\n    </tr>\r\n</table>\r\n</b>\r\n\r\n</div>"
 
 /***/ }),
 
-/***/ 676:
-/***/ (function(module, exports) {
-
-module.exports = "<p>\n  game works!\n</p>\n"
-
-/***/ }),
-
-/***/ 677:
+/***/ 674:
 /***/ (function(module, exports) {
 
 module.exports = "<a [ngClass]=\"{'mine-box': true , \r\n'mine-bomb': revealed && mine,\r\n'mine-click': revealed && !mine && !flag,\r\n'mine-flag': (!revealed && flag && !superman) || (revealed && !mine && flag),\r\n'mine-superman': superman && !mine,\r\n'mine-flag-good-superman': superman && flag && mine,\r\n'mine-flag-bad-superman': superman && flag && !mine,\r\n'mine-bomb-superman': superman && mine && !revealed}\">\r\n    <i *ngIf=\"(superman && !mine && (danger>0)) || (revealed && !mine && (danger>0))\" style=\"font: bold;\">\r\n        {{danger}}\r\n    </i>\r\n</a>\r\n"
 
 /***/ }),
 
-/***/ 957:
+/***/ 954:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(403);
@@ -644,5 +590,5 @@ module.exports = __webpack_require__(403);
 
 /***/ })
 
-},[957]);
+},[954]);
 //# sourceMappingURL=main.bundle.map

@@ -12,8 +12,8 @@ export class AppComponent {
     counterSec: number;
     counterMin: number;
     start: boolean;
-    width: number = 1;
-    height: number = 1;
+    width: number = 2;
+    height: number = 2;
     mines: number = 1;
     flags: number;
     space: MineBox[][];
@@ -64,7 +64,7 @@ superman(): void{
 
   onChange() {
         const max = 300;
-        const min = 1;
+        const min = 2;
         if (this.width > max) {
             this.width = max;
         }
@@ -81,8 +81,8 @@ superman(): void{
         if (this.mines > maxMines) {
             this.mines = maxMines;
         }
-        if (this.mines < min) {
-            this.mines = min;
+        if (this.mines < 1) {
+            this.mines = 1;
         }
 }
 

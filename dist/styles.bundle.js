@@ -6,10 +6,10 @@ webpackJsonp([2,4],{
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(668);
+var content = __webpack_require__(667);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(954)(content, {});
+var update = __webpack_require__(951)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -27,22 +27,22 @@ if(false) {
 
 /***/ }),
 
-/***/ 668:
+/***/ 667:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(669)();
+exports = module.exports = __webpack_require__(668)();
 // imports
 
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\r\n body{\r\n    background: url(" + __webpack_require__(955) + ");\r\n    background-repeat: no-repeat;\r\n    background-size: 100%;\r\n    position: fixed;\r\n    right:0;\r\n    left:0;\r\n    top:0;\r\n    bottom:0;\r\n    width: 100%;\r\n    height: 100%;\r\n}\r\n", ""]);
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\r\n body{\r\n    background: url(" + __webpack_require__(952) + ");\r\n    background-repeat: no-repeat;\r\n    background-size: 100%;\r\n    position: fixed;\r\n    right:0;\r\n    left:0;\r\n    top:0;\r\n    bottom:0;\r\n    width: 100%;\r\n    height: 100%;\r\n}\r\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ 669:
+/***/ 668:
 /***/ (function(module, exports) {
 
 /*
@@ -99,7 +99,7 @@ module.exports = function() {
 
 /***/ }),
 
-/***/ 954:
+/***/ 951:
 /***/ (function(module, exports) {
 
 /*
@@ -352,14 +352,14 @@ function updateLink(linkElement, obj) {
 
 /***/ }),
 
-/***/ 955:
+/***/ 952:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "back.jpg";
 
 /***/ }),
 
-/***/ 959:
+/***/ 956:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(405);
@@ -367,5 +367,5 @@ module.exports = __webpack_require__(405);
 
 /***/ })
 
-},[959]);
+},[956]);
 //# sourceMappingURL=styles.bundle.map

@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import {MineBox} from './mine-box.service';
 import {SimpleTimer} from 'ng2-simple-timer';
+import {ViewEncapsulation} from '@angular/core'
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 
 export class AppComponent {
@@ -23,10 +26,10 @@ export class AppComponent {
     won: boolean;
     restartTable: boolean;
     flagsOnMines: number;
-    
+    custom: boolean;
 
   constructor(private st: SimpleTimer) {}
-
+  
     startTimer(){
         this.st.newTimer('1sec',1);
         this.st.subscribe('1sec', e => this.timer0callback());
@@ -102,6 +105,7 @@ superman(): void{
     this.onChange();
     this.st.delTimer('1sec');
     document.getElementById("myDiv").style.backgroundImage = "url('./sky.jpg')";
+    this.custom = false;
     this.restartTable = true;
     this.flags = this.mines;
     this.space = [];
@@ -120,13 +124,17 @@ superman(): void{
 
   public restart(): void {
     if(this.restartTable){
-        this.restartTable = false;
         document.getElementById("myDiv").style.backgroundImage = "url('./back.jpg')";
+        this.restartTable = false;
         this.start = false;
         return;
     }
     this.again();
   }
+
+public customGame(custom: boolean){
+    this.custom = custom;
+}
 
   generate(user:number ,level: number){
     this.width = Math.floor(10 * level/user);

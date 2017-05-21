@@ -27,6 +27,9 @@ export class AppComponent {
     restartTable: boolean;
     flagsOnMines: number;
     custom: boolean;
+    userLevel: number;
+    level: number;
+    step: number;
 
   constructor(private st: SimpleTimer) {}
   
@@ -136,13 +139,26 @@ public customGame(custom: boolean){
     this.custom = custom;
 }
 
-  generate(user:number ,level: number){
-    this.width = Math.floor(10 * level/user);
-    this.height = Math.floor(15 * level/user);
-    this.mines = Math.floor(20 * level/user);
+  generate(userLevel:number ,level: number){
+    this.userLevel = userLevel;
+    this.level = level;
+    this.step = 2;
+    this.width = Math.floor(10 * level/userLevel);
+    this.height = Math.floor(15 * level/userLevel);
+    this.mines = Math.floor(50 * level/userLevel * level/userLevel);
     this.onChange();
     this.again();
   }
+
+  generateNextLevel(){
+    this.step++;
+    this.width = Math.floor(10 * this.level/this.userLevel * this.step/2);
+    this.height = Math.floor(15 * this.level/this.userLevel * this.step/2);
+    this.mines = Math.floor(50 * this.level/this.userLevel * this.level/this.userLevel * this.step/2);
+    this.onChange();
+    this.again();
+  }
+
     random(){
         this.width = Math.floor(Math.random() * 15);
         this.height = Math.floor(Math.random() * 15);

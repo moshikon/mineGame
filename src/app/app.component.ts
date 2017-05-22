@@ -112,7 +112,6 @@ superman(): void{
         if(!this.start){
             this.startTimer();
             this.start=true;
-            console.log("start");
         } 
         if(event.shiftKey){
             this.putFlag(i,j);
@@ -166,7 +165,6 @@ public customGame(custom: boolean): void{
     /**
      * Generate the board by level
      */
-<<<<<<< HEAD
   generate(userLevel:number ,level: number): void{
     this.userLevel = userLevel;
     this.level = level;
@@ -181,21 +179,15 @@ public customGame(custom: boolean): void{
     /**
      * Generate the board by level
      */
-  generateNextLevel(user:number ,level: number): void{
+  generateNextLevel(): void{
+      console.log("??");
     this.step++;
     this.width = Math.floor(10 * this.level/this.userLevel * this.step/2);
     this.height = Math.floor(15 * this.level/this.userLevel * this.step/2);
     this.mines = Math.floor(50 * this.level/this.userLevel * this.level/this.userLevel * this.step/2);
-=======
-  generate(user:number ,level: number): void{
-    this.width = Math.floor(10 * level/user);
-    this.height = Math.floor(15 * level/user);
-    this.mines = Math.floor(20 * level/user);
->>>>>>> origin/master
     this.onChange();
     this.again();
-  }
-
+}
       /**
      * Generate random game
      */

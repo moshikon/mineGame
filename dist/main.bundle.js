@@ -1,6 +1,6 @@
-webpackJsonp([2,4],{
+webpackJsonp([1,4],{
 
-/***/ 403:
+/***/ 402:
 /***/ (function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -9,20 +9,20 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 403;
+webpackEmptyContext.id = 402;
 
 
 /***/ }),
 
-/***/ 404:
+/***/ 403:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(492);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(491);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__(516);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_app_module__ = __webpack_require__(513);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__(515);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_app_module__ = __webpack_require__(512);
 
 
 
@@ -35,12 +35,12 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dyna
 
 /***/ }),
 
-/***/ 512:
+/***/ 511:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mine_box_service__ = __webpack_require__(514);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mine_box_service__ = __webpack_require__(513);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ng2_simple_timer__ = __webpack_require__(369);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ng2_simple_timer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_ng2_simple_timer__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
@@ -65,11 +65,17 @@ var AppComponent = (function () {
         this.height = 2;
         this.mines = 1;
     }
+    /**
+   * Setting and starting the timer
+   */
     AppComponent.prototype.startTimer = function () {
         var _this = this;
         this.st.newTimer('1sec', 1);
         this.st.subscribe('1sec', function (e) { return _this.timer0callback(); });
     };
+    /**
+ * Calculate time
+ */
     AppComponent.prototype.timer0callback = function () {
         if (!this.lost && !this.won) {
             this.counterSec++;
@@ -82,6 +88,9 @@ var AppComponent = (function () {
             }
         }
     };
+    /**
+     * Enable superman mood
+     */
     AppComponent.prototype.superman = function () {
         if (this.revealAll) {
             this.revealAll = false;
@@ -100,6 +109,9 @@ var AppComponent = (function () {
             }
         }
     };
+    /**
+     * Checks that the UI according to the rules
+     */
     AppComponent.prototype.onChange = function () {
         var max = 300;
         var min = 2;
@@ -123,6 +135,9 @@ var AppComponent = (function () {
             this.mines = 1;
         }
     };
+    /**
+     * Response to a box click
+     */
     AppComponent.prototype.boxClicked = function (event, i, j) {
         if (!this.start) {
             this.startTimer();
@@ -135,6 +150,9 @@ var AppComponent = (function () {
         else
             this.reveal(i, j);
     };
+    /**
+   * Generate the same game again
+   */
     AppComponent.prototype.again = function () {
         this.onChange();
         this.st.delTimer('1sec');
@@ -155,6 +173,9 @@ var AppComponent = (function () {
         this.generateMines();
         this.generateDanger();
     };
+    /**
+     * Generate a new game
+     */
     AppComponent.prototype.restart = function () {
         if (this.restartTable) {
             document.getElementById("myDiv").style.backgroundImage = "url('./back.jpg')";
@@ -164,9 +185,15 @@ var AppComponent = (function () {
         }
         this.again();
     };
+    /**
+     * Enter into custom page
+     */
     AppComponent.prototype.customGame = function (custom) {
         this.custom = custom;
     };
+    /**
+     * Generate the board by level
+     */
     AppComponent.prototype.generate = function (userLevel, level) {
         this.userLevel = userLevel;
         this.level = level;
@@ -177,7 +204,10 @@ var AppComponent = (function () {
         this.onChange();
         this.again();
     };
-    AppComponent.prototype.generateNextLevel = function () {
+    /**
+     * Generate the board by level
+     */
+    AppComponent.prototype.generateNextLevel = function (user, level) {
         this.step++;
         this.width = Math.floor(10 * this.level / this.userLevel * this.step / 2);
         this.height = Math.floor(15 * this.level / this.userLevel * this.step / 2);
@@ -185,6 +215,9 @@ var AppComponent = (function () {
         this.onChange();
         this.again();
     };
+    /**
+   * Generate random game
+   */
     AppComponent.prototype.random = function () {
         this.width = Math.floor(Math.random() * 15);
         this.height = Math.floor(Math.random() * 15);
@@ -225,52 +258,44 @@ var AppComponent = (function () {
             for (var j = 0; j < this.height; j++) {
                 var danger = 0;
                 if (i !== 0) {
-                    if (this.space[i - 1][j].getMine()) {
+                    if (this.space[i - 1][j].getMine())
                         danger++;
-                    }
                 }
                 if (i !== this.width - 1) {
-                    if (this.space[i + 1][j].getMine()) {
+                    if (this.space[i + 1][j].getMine())
                         danger++;
-                    }
                 }
                 if (j !== 0) {
-                    if (this.space[i][j - 1].getMine()) {
+                    if (this.space[i][j - 1].getMine())
                         danger++;
-                    }
                 }
                 if (j !== this.height - 1) {
-                    if (this.space[i][j + 1].getMine()) {
+                    if (this.space[i][j + 1].getMine())
                         danger++;
-                    }
                 }
-                ////////Slant nextdoors//////////
+                //diagonal nextdoors
                 if (j !== this.height - 1) {
                     if (i !== this.width - 1) {
-                        if (this.space[i + 1][j + 1].getMine()) {
+                        if (this.space[i + 1][j + 1].getMine())
                             danger++;
-                        }
                     }
                 }
                 if (j !== 0) {
                     if (i !== 0) {
-                        if (this.space[i - 1][j - 1].getMine()) {
+                        if (this.space[i - 1][j - 1].getMine())
                             danger++;
-                        }
                     }
                 }
                 if (j !== this.height - 1) {
                     if (i !== 0) {
-                        if (this.space[i - 1][j + 1].getMine()) {
+                        if (this.space[i - 1][j + 1].getMine())
                             danger++;
-                        }
                     }
                 }
                 if (j !== 0) {
                     if (i !== this.width - 1) {
-                        if (this.space[i + 1][j - 1].getMine()) {
+                        if (this.space[i + 1][j - 1].getMine())
                             danger++;
-                        }
                     }
                 }
                 this.space[i][j].setDanger(danger);
@@ -324,10 +349,12 @@ var AppComponent = (function () {
             }
         }
     };
+    /**
+     * Putting/removing a flag and update the count
+     */
     AppComponent.prototype.putFlag = function (i, j) {
         if (!this.lost && !this.won) {
             if (this.space[i][j].getFlag()) {
-                console.log("hhh");
                 this.space[i][j].setFlag(false);
                 this.flags++;
                 if (this.space[i][j].getMine()) {
@@ -358,8 +385,8 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-root',
-            template: __webpack_require__(674),
-            styles: [__webpack_require__(672)],
+            template: __webpack_require__(673),
+            styles: [__webpack_require__(671)],
             encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ng2_simple_timer__["SimpleTimer"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2_ng2_simple_timer__["SimpleTimer"]) === 'function' && _a) || Object])
@@ -371,18 +398,18 @@ var AppComponent = (function () {
 
 /***/ }),
 
-/***/ 513:
+/***/ 512:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(218);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(482);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(488);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(481);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(487);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_simple_timer__ = __webpack_require__(369);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_simple_timer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_ng2_simple_timer__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(512);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__mine_box_mine_box_component__ = __webpack_require__(515);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(511);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__mine_box_mine_box_component__ = __webpack_require__(514);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -425,7 +452,7 @@ var AppModule = (function () {
 
 /***/ }),
 
-/***/ 514:
+/***/ 513:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -487,7 +514,7 @@ var MineBox = (function () {
 
 /***/ }),
 
-/***/ 515:
+/***/ 514:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -544,8 +571,8 @@ var MineBoxComponent = (function () {
     MineBoxComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-mine-box',
-            template: __webpack_require__(675),
-            styles: [__webpack_require__(673)]
+            template: __webpack_require__(674),
+            styles: [__webpack_require__(672)]
         }), 
         __metadata('design:paramtypes', [])
     ], MineBoxComponent);
@@ -555,7 +582,7 @@ var MineBoxComponent = (function () {
 
 /***/ }),
 
-/***/ 516:
+/***/ 515:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -571,41 +598,41 @@ var environment = {
 
 /***/ }),
 
+/***/ 671:
+/***/ (function(module, exports) {
+
+module.exports = "#mineBackgroundBig\n{\n    background-color: none;\n    margin: 0px auto;\n    padding: 20px;\n    top: 40%;\n    margin-top: -10%;\n     }\n\n#mineBackground\n{\n    background-color: none;\n    margin: 0px auto;\n    padding: 20px;\n    top: 40%;\n    margin-top: -10%;\n    zoom: 80% \n     }\n\n#mineBackgroundSmall\n{\n    background-color: none;\n    margin: 0px auto;\n    padding: 20px;\n    top: 40%;\n    margin-top: -10%;\n    zoom: 70% \n     }\n\n#container {\n    color: #e6ffff;\n    font-size: 60px;\n    position: fixed;\n    width: 500px;\n    height: 800px;\n    top: 47%;\n    left: 50%;\n    margin-top: -150px;\n    margin-left: -250px;\n    text-align: center;\n}\n\n#mid{\n    color: #00a3cc; \n    font-family: 'Signika', sans-serif; \n    padding-bottom: 10px;\n    margin: 0px auto;\n    margin-left: -20px;\n    padding: 20px;\n\n}\n\n#myDiv{\n    width: 100%;\n    height: 100%;\n    position: fixed;\n    background-repeat: repeat;\n    background-size: 100%;\n    right:0;\n    left:0;\n    top:0;\n    bottom:0;\n    overflow: auto;\n}\n\ntable{\n\tposition: absolute;\n    right:0;\n    bottom:0;\n    left: 40%;\n\toverflow: hidden;\n\t}\n\nh1 {\n    font-size: 80px;\n    font-weight: bold;\n    color: #fff;\n    text-shadow: 0 1px 4px #000;\n    margin-top: 20px;\n}\n\nh3{\ntext-shadow:1px 1px 1px rgba(201,201,201,1);\nfont-weight:normal;\ncolor:#306C73;\nletter-spacing:1pt;\nword-spacing:2pt;\nfont-size:20px;\ntext-align:left;\nfont-family:georgia, serif;\nline-height:1.5;\nmargin-left: 20px;\n}\n\nh4 {\n\tposition: absolute;\n    right:0;\n    bottom:0;\n    left: 0;\n\ttop:-10%;\n\tfont-family: \"Avant Garde\", Avantgarde, \"Century Gothic\", CenturyGothic, \"AppleGothic\", sans-serif;\n\tfont-size: 92px;\n\ttext-align: center;\n\ttext-transform: uppercase;\n\ttext-rendering: optimizeLegibility;\n    color: #e0dfdc;\n    letter-spacing: .1em;\n    text-shadow: \n      0 -1px 0 #fff, \n      0 1px 0 #2e2e2e, \n      0 2px 0 #2c2c2c, \n      0 3px 0 #2a2a2a, \n      0 4px 0 #282828, \n      0 5px 0 #262626, \n      0 6px 0 #242424, \n      0 7px 0 #222, \n      0 8px 0 #202020, \n      0 9px 0 #1e1e1e, \n      0 10px 0 #1c1c1c, \n      0 11px 0 #1a1a1a, \n      0 12px 0 #181818, \n      0 13px 0 #161616, \n      0 14px 0 #141414, \n      0 15px 0 #121212, \n      0 22px 30px rgba(0, 0, 0, 0.9);\n}\n\nh5{\n  font-size: 45px;\n  position: absolute;\n  top: -5%;\n}\n\np {\n    -webkit-text-stroke: 0.5px black;\n    width: 100%;\n    height: 100%;\n    top: 20%;\n    font-size: 31px;\n    line-height: 1.3em;\n    color: #fff;\n    margin: 1.1em auto;\n    text-align: center;\n    text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);\n}\n\nb{\n    outline: #000 thin\n}\ninput[type=\"text\"] {\n  background: #f0f0f5;\n  padding: 2px;\n  border: solid 1px #dcdcdc;\n  transition: box-shadow 0.3s, border 0.3s;\n  font-weight: bold;\n  text-align: center;\n  border-radius: 4px;\n  width: 150px;\n}\ninput[type=\"text\"]:focus {\n  border: solid 1px #707070;\n  box-shadow: 0 0 5px 1px #969696;\n  background: rgb(250,250,250);\n}\n\n\n\n.myButton {\n\tbox-shadow:inset 0px 1px 0px 0px #ffffff;\n\tbackground:linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);\n\tfilter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf',GradientType=0);\n\tbackground-color:#ededed;\n\tborder-radius:6px;\n\tborder:1px solid #dcdcdc;\n\tdisplay:inline-block;\n\tcursor:pointer;\n\tcolor:#666666;\n\tfont-family:Arial;\n\tfont-size:15px;\n\tfont-weight:bold;\n\tpadding:3px 24px;\n\ttext-decoration:none;\n\ttext-shadow:0px 1px 0px #ffffff;\n}\n.myButton:hover {\n\tbackground:linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);\n\tfilter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed',GradientType=0);\n\tbackground-color:#dfdfdf;\n}\n.myButton:active {\n\tposition:relative;\n\ttop:1px;\n}\n\n.secButton {\n\tbox-shadow:inset 0px 1px 0px 0px #dcecfb;\n\tbackground:linear-gradient(to bottom, #bddbfa 5%, #80b5ea 100%);\n\tfilter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bddbfa', endColorstr='#80b5ea',GradientType=0);\n\tbackground-color:#bddbfa;\n\tborder-radius:6px;\n\tborder:1px solid #84bbf3;\n\tdisplay:inline-block;\n\tcursor:pointer;\n\tcolor:#344c4c;\n\tfont-family:Arial;\n\tfont-size:15px;\n\tfont-weight:bold;\n\tpadding:6px 24px;\n\ttext-decoration:none;\n\ttext-shadow:0px 1px 0px #528ecc;\n}\n.secButton:hover {\n\tbackground:linear-gradient(to bottom, #80b5ea 5%, #bddbfa 100%);\n\tfilter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#80b5ea', endColorstr='#bddbfa',GradientType=0);\n\tbackground-color:#80b5ea;\n}\n.secButton:active {\n\tposition:relative;\n\ttop:1px;\n}\n"
+
+/***/ }),
+
 /***/ 672:
 /***/ (function(module, exports) {
 
-module.exports = "#mineBackgroundBig\r\n{\r\n    background-color: none;\r\n    margin: 0px auto;\r\n    margin-top: auto;\r\n    top: 40%;\r\n    margin-top: -150px;\r\n     }\r\n    \r\n#mineBackground\r\n{\r\n    background-color: none;\r\n    margin: 0px auto;\r\n    margin-top: auto;\r\n    top: 40%;\r\n    margin-top: -150px;\r\n    zoom:80%;\r\n     }\r\n\r\n#mineBackgroundSmall\r\n{\r\n    background-color: none;\r\n    margin: 0px auto;\r\n    margin-top: auto;\r\n    top: 40%;\r\n    margin-top: -150px;\r\n    zoom:70%;\r\n    }\r\n\r\n#container {\r\n    color: #e6ffff;\r\n    font-size: 60px;\r\n    position: fixed;\r\n    width: 500px;\r\n    height: 800px;\r\n    top: 40%;\r\n    left: 50%;\r\n    margin-top: auto;\r\n    margin-left: -250px;\r\n    text-align: center;\r\n}\r\n\r\n#mid{\r\n    color: #00a3cc; \r\n    font-family: 'Signika', sans-serif; \r\n    padding-bottom: 10px;\r\n    margin: 0px auto;\r\n    margin-left: -20px;\r\n    padding: 20px;\r\n\r\n}\r\n\r\n#myDiv{\r\n    width: 100%;\r\n    height: 100%;\r\n    position: fixed;\r\n    background-repeat: repeat;\r\n    background-size: 100%;\r\n    right:0;\r\n    left:0;\r\n    top:0;\r\n    bottom:0;\r\n    overflow: auto;\r\n}\r\n\r\ntable{\r\n\tposition: absolute;\r\n    right:0;\r\n    bottom:0;\r\n    left: 40%;\r\n\toverflow: hidden;\r\n    }\r\n\r\nh1 {\r\n    font-size: 80px;\r\n    font-weight: bold;\r\n    color: #fff;\r\n    text-shadow: 0 1px 4px #000;\r\n    margin-top: 20px;\r\n}\r\n\r\n\r\nh3{\r\ntext-shadow:1px 1px 1px rgba(201,201,201,1);\r\nfont-weight:normal;\r\ncolor:#306C73;\r\nletter-spacing:1pt;\r\nword-spacing:2pt;\r\nfont-size:20px;\r\ntext-align:left;\r\nfont-family:georgia, serif;\r\nline-height:1.5;\r\nmargin-left: 20px;\r\n}\r\n\r\nh4 {\r\n\tposition: absolute;\r\n    right:0;\r\n    bottom:0;\r\n    left: 0;\r\n    margin-top:auto;\r\n\ttop:10%;\r\n\tfont-family: \"Avant Garde\", Avantgarde, \"Century Gothic\", CenturyGothic, \"AppleGothic\", sans-serif;\r\n\tfont-size: 92px;\r\n\ttext-align: center;\r\n\ttext-transform: uppercase;\r\n\ttext-rendering: optimizeLegibility;\r\n    color: #e0dfdc;\r\n    letter-spacing: .1em;\r\n    text-shadow: \r\n      0 -1px 0 #fff, \r\n      0 1px 0 #2e2e2e, \r\n      0 2px 0 #2c2c2c, \r\n      0 3px 0 #2a2a2a, \r\n      0 4px 0 #282828, \r\n      0 5px 0 #262626, \r\n      0 6px 0 #242424, \r\n      0 7px 0 #222, \r\n      0 8px 0 #202020, \r\n      0 9px 0 #1e1e1e, \r\n      0 10px 0 #1c1c1c, \r\n      0 11px 0 #1a1a1a, \r\n      0 12px 0 #181818, \r\n      0 13px 0 #161616, \r\n      0 14px 0 #141414, \r\n      0 15px 0 #121212, \r\n      0 22px 30px rgba(0, 0, 0, 0.9);\r\n}\r\n\r\nh5{\r\n  font-size: 45px;\r\n  position: absolute;\r\n  top: -5%;\r\n}\r\n\r\np {\r\n    -webkit-text-stroke: 0.5px black;\r\n    width: 100%;\r\n    height: 100%;\r\n    top: 20%;\r\n    font-size: 31px;\r\n    line-height: 1.3em;\r\n    color: #fff;\r\n    margin: 1.1em auto;\r\n    text-align: center;\r\n    text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);\r\n}\r\n\r\nb{\r\n    outline: #000 thin\r\n}\r\ninput[type=\"text\"] {\r\n  background: #f0f0f5;\r\n  padding: 2px;\r\n  border: solid 1px #dcdcdc;\r\n  transition: box-shadow 0.3s, border 0.3s;\r\n  font-weight: bold;\r\n  text-align: center;\r\n  border-radius: 4px;\r\n  width: 150px;\r\n}\r\ninput[type=\"text\"]:focus {\r\n  border: solid 1px #707070;\r\n  box-shadow: 0 0 5px 1px #969696;\r\n  background: rgb(250,250,250);\r\n}\r\n\r\n\r\n\r\n.myButton {\r\n\tbox-shadow:inset 0px 1px 0px 0px #ffffff;\r\n\tbackground:linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);\r\n\tfilter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf',GradientType=0);\r\n\tbackground-color:#ededed;\r\n\tborder-radius:6px;\r\n\tborder:1px solid #dcdcdc;\r\n\tdisplay:inline-block;\r\n\tcursor:pointer;\r\n\tcolor:#666666;\r\n\tfont-family:Arial;\r\n\tfont-size:15px;\r\n\tfont-weight:bold;\r\n\tpadding:3px 24px;\r\n\ttext-decoration:none;\r\n\ttext-shadow:0px 1px 0px #ffffff;\r\n}\r\n.myButton:hover {\r\n\tbackground:linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);\r\n\tfilter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed',GradientType=0);\r\n\tbackground-color:#dfdfdf;\r\n}\r\n.myButton:active {\r\n\tposition:relative;\r\n\ttop:1px;\r\n}\r\n\r\n.secButton {\r\n\tbox-shadow:inset 0px 1px 0px 0px #dcecfb;\r\n\tbackground:linear-gradient(to bottom, #bddbfa 5%, #80b5ea 100%);\r\n\tfilter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bddbfa', endColorstr='#80b5ea',GradientType=0);\r\n\tbackground-color:#bddbfa;\r\n\tborder-radius:6px;\r\n\tborder:1px solid #84bbf3;\r\n\tdisplay:inline-block;\r\n\tcursor:pointer;\r\n\tcolor:#344c4c;\r\n\tfont-family:Arial;\r\n\tfont-size:15px;\r\n\tfont-weight:bold;\r\n\tpadding:6px 24px;\r\n\ttext-decoration:none;\r\n\ttext-shadow:0px 1px 0px #528ecc;\r\n}\r\n.secButton:hover {\r\n\tbackground:linear-gradient(to bottom, #80b5ea 5%, #bddbfa 100%);\r\n\tfilter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#80b5ea', endColorstr='#bddbfa',GradientType=0);\r\n\tbackground-color:#80b5ea;\r\n}\r\n.secButton:active {\r\n\tposition:relative;\r\n\ttop:1px;\r\n}\r\n"
+module.exports = ".mine-box\n{\n  box-sizing: border-box;\n  color: rgb(255, 255, 255);\n  cursor: pointer;\n  display: inline-block;\n  height: 56px;\n  letter-spacing: 0.5px;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  text-transform: uppercase;\n  vertical-align: middle;\n  width: 56px;\n  z-index: 1;\n  -webkit-perspective-origin: 28px 28px;\n          perspective-origin: 28px 28px;\n  -webkit-transform-origin: 28px 28px;\n          transform-origin: 28px 28px;\n  border-radius: 50% 50% 50% 50%;\n  font: bold 15.5px / 54px Roboto, sans-serif;\n  overflow: hidden;\n  transition: all 0.3s ease 0s;\n  background: url(\"./dot.png\");\n}\n\n\n.mine-bomb{\n  background: url(\"./bomb_lost.png\");\n  border: 0px none  rgb(255, 255, 255);       \n  }\n\n.mine-flag{\n  background: url(\"./flag.png\");\n  border: 0px none  rgb(255, 255, 255);       \n  }\n\n.mine-superman\n{\n  color: rgb(255, 255, 255);\n  background: url(\"./dot3.png\");\n}\n\n.mine-bomb-superman\n{\n  background: url(\"./bomb2.png\");\n}\n\n.mine-flag-good-superman\n{\n  color:  rgb(255, 255, 255);\n  background: url(\"./flaggood.png\");\n}\n\n.mine-flag-bad-superman\n{\n  color:  rgb(255, 255, 255);\n    background: url(\"./flagbad.png\");\n}\n\n.mine-click\n{\n  \n  color:  rgb(0, 0, 0);\n  background: url(\"./dot2.png\");\n\n}\n"
 
 /***/ }),
 
 /***/ 673:
 /***/ (function(module, exports) {
 
-module.exports = ".mine-box\r\n{\r\n  box-sizing: border-box;\r\n  color: rgb(255, 255, 255);\r\n  cursor: pointer;\r\n  display: inline-block;\r\n  height: 56px;\r\n  letter-spacing: 0.5px;\r\n  position: relative;\r\n  text-align: center;\r\n  text-decoration: none;\r\n  text-transform: uppercase;\r\n  vertical-align: middle;\r\n  width: 56px;\r\n  z-index: 1;\r\n  -webkit-perspective-origin: 28px 28px;\r\n          perspective-origin: 28px 28px;\r\n  -webkit-transform-origin: 28px 28px;\r\n          transform-origin: 28px 28px;\r\n  border-radius: 50% 50% 50% 50%;\r\n  font: bold 15.5px / 54px Roboto, sans-serif;\r\n  overflow: hidden;\r\n  transition: all 0.3s ease 0s;\r\n  background: url(\"./dot.png\");\r\n}\r\n\r\n\r\n.mine-bomb{\r\n  background: url(\"./bomb_lost.png\");\r\n  border: 0px none  rgb(255, 255, 255);       \r\n  }\r\n\r\n.mine-flag{\r\n  background: url(\"./flag.png\");\r\n  border: 0px none  rgb(255, 255, 255);       \r\n  }\r\n\r\n.mine-superman\r\n{\r\n  color: rgb(255, 255, 255);\r\n  background: url(\"./dot3.png\");\r\n}\r\n\r\n.mine-bomb-superman\r\n{\r\n  background: url(\"./bomb2.png\");\r\n}\r\n\r\n.mine-flag-good-superman\r\n{\r\n  color:  rgb(255, 255, 255);\r\n  background: url(\"./flaggood.png\");\r\n}\r\n\r\n.mine-flag-bad-superman\r\n{\r\n  color:  rgb(255, 255, 255);\r\n    background: url(\"./flagbad.png\");\r\n}\r\n\r\n.mine-click\r\n{\r\n  \r\n  color:  rgb(0, 0, 0);\r\n  background: url(\"./dot2.png\");\r\n\r\n}\r\n"
+module.exports = "<div id=\"myDiv\">\n    <h4 *ngIf=\"!restartTable\"> Minesweeper! </h4>\n<h1>\n  <a *ngIf=\"!restartTable\" id=\"container\" >\n  <a *ngIf=\"!custom\">\n  User:\n  <input type=\"text\" [(ngModel)]=\"user\" name=\"User\" ></a>\n  <a *ngIf=\"custom\">\n  Height:\n  <input type=\"text\" [(ngModel)]=\"width\" (change)=\"onChange()\" name=\"Height\" >\n  <label style=\"font-size: 20px\"> (up to 300)</label>\n  Width:\n  <input type=\"text\" [(ngModel)]=\"height\" (change)=\"onChange()\" name=\"Width\" >\n  <label style=\"font-size: 20px\"> (up to 300)</label>\n  Mines:\n  <input  type=\"text\" [(ngModel)]=\"mines\" (change)=\"onChange()\" name=\"Mines\" >\n  <br><button class=\"myButton\" (click) = \"restart()\" > Play </button>\n  <button class=\"myButton\" (click) = \"customGame(false)\" > Back </button><br>\n  </a>\n  <a *ngIf=\"!custom\">\n  <button class=\"myButton\" (click) = \"customGame(true)\" > Create custom game </button>\n  <button class=\"myButton\" (click) = \"random()\" > Surprise me </button><br>\n  <p>Or choose a level:<br>\n  <button class=\"myButton\" (click) = \"generate(3,1)\" > Beginner </button>\n  <button class=\"myButton\" (click) = \"generate(2,1)\" > Normal </button>\n  <button class=\"myButton\" (click) = \"generate(1,1)\" > Pro </button></a>\n  \n</a>\n</h1>\n<b *ngIf = \"restartTable\" id=\"mid\">\n<h3 style=\"margin-left: 20px\" >  \n<h5 >Hello {{user}}, <br></h5>\n<br >Flags left: <img src=\"./flag_small.png\" > X {{flags}} \n<br> Time: <b> {{counterMin}}:{{counterSec}}</b>\n<br>\n<a  *ngIf = \"won == lost\" >Need some help?\n<br><img  src=\"./superman.png\"  style=\"cursor:pointer;margin-left: 180px;margin-top: -45px; position:absolute\" (click) = \"superman()\">\n<div style=\"font-size: 25px\" >Instructions: </div>\n<div style=\"font-size: 18px;margin-left: 20px\"> ☻Left-click an empty square to reveal it.<br>\n☻(Shift + Left-click) an empty square to flag it.<br>\n☻Superman mood reveals the board.</div></a></h3>\n<button style=\"margin-left: 20px\" class=\"secButton\" (click) = \"restart()\" > New Game </button>\n<button style=\"margin-left: 20px\" class=\"secButton\" (click) = \"again()\" > Restart </button>\n<button style=\"margin-left: 20px\" class=\"secButton\" (click) = \"generateNextLevel()\" > Next level </button>\n<table  *ngIf=\"width*height <= 89\"\n    id=\"mineBackgroundBig\" [ngStyle]=\"{'board': (width*height)}\">\n        <tr *ngFor=\"let row of space\">\n        <td *ngFor=\"let mineBox of row\">\n            <app-mine-box [mine]=\"mineBox.mine\" [superman]=\"mineBox.superman\" [flag]=\"mineBox.flag\" [revealed]=\"mineBox.revealed\" [danger]=\"mineBox.danger\" (click)=\"boxClicked($event,mineBox.i, mineBox.j)\"></app-mine-box>\n        </td>\n    </tr>\n</table>\n<table *ngIf=\"width*height > 89\" \n    id=\"mineBackground\" [ngStyle]=\"{'board': (width*height)}\">\n        <tr *ngFor=\"let row of space\">\n        <td *ngFor=\"let mineBox of row\">\n            <app-mine-box [mine]=\"mineBox.mine\" [superman]=\"mineBox.superman\" [flag]=\"mineBox.flag\" [revealed]=\"mineBox.revealed\" [danger]=\"mineBox.danger\" (click)=\"boxClicked($event,mineBox.i, mineBox.j)\"></app-mine-box>\n        </td>\n    </tr>\n</table>\n</b>\n\n</div>"
 
 /***/ }),
 
 /***/ 674:
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"myDiv\">\r\n    <h4 *ngIf=\"!restartTable\"> Minesweeper! </h4>\r\n<h1>\r\n  <a *ngIf=\"!restartTable\" id=\"container\" >\r\n  <a *ngIf=\"!custom\">\r\n  User:\r\n  <input type=\"text\" [(ngModel)]=\"user\" name=\"User\" ></a>\r\n  <a *ngIf=\"custom\">\r\n  Height:\r\n  <input type=\"text\" [(ngModel)]=\"width\" (change)=\"onChange()\" name=\"Height\" >\r\n  <label style=\"font-size: 20px\">(up to 300)</label> \r\n  Width:\r\n  <input type=\"text\" [(ngModel)]=\"height\" (change)=\"onChange()\" name=\"Width\" >\r\n  <label style=\"font-size: 20px\">(up to 300)</label> \r\n  Mines:\r\n  <input  type=\"text\" [(ngModel)]=\"mines\" (change)=\"onChange()\" name=\"Mines\" >\r\n  <br><button class=\"myButton\" (click) = \"restart()\" > Play </button>\r\n  <button class=\"myButton\" (click) = \"customGame(false)\" > Back </button><br>\r\n  </a>\r\n  <a *ngIf=\"!custom\">\r\n  <button class=\"myButton\" (click) = \"customGame(true)\" > Create custom game </button>\r\n  <button class=\"myButton\" (click) = \"random()\" > Surprise me </button><br>\r\n  <p>Or choose a level:<br>\r\n  <button class=\"myButton\" (click) = \"generate(3,1)\" > Beginner </button>\r\n  <button class=\"myButton\" (click) = \"generate(2,1)\" > Normal </button>\r\n  <button class=\"myButton\" (click) = \"generate(1,1)\" > Pro </button></a>\r\n</a>\r\n</h1>\r\n<b *ngIf = \"restartTable\" id=\"mid\">\r\n<h3 style=\"margin-left: 20px\" >  \r\n<h5 >Hello {{user}}, <br></h5>\r\n<br >Flags left: <img src=\"./flag_small.png\" > X {{flags}} \r\n<br> Time: <b> {{counterMin}}:{{counterSec}}</b>\r\n<br>\r\n<a  *ngIf = \"won == lost\" >Need some help?\r\n<br><img  src=\"./superman.png\"  style=\"cursor:pointer;margin-left: 180px;margin-top: -45px; position:absolute\" (click) = \"superman()\">\r\n<div style=\"font-size: 25px\" >Instructions: </div>\r\n<div style=\"font-size: 18px;margin-left: 20px\"> ☻ Left-click an empty square to reveal it.<br>\r\n☻ (Shift + Left-click) an empty square to flag it.<br>\r\n☻ Superman mood reveals the board.</div></a></h3>\r\n<button style=\"margin-left: 20px\" class=\"secButton\" (click) = \"restart()\" > New Game </button>\r\n<button style=\"margin-left: 20px\" class=\"secButton\" (click) = \"again()\" > Restart </button>\r\n<button style=\"margin-left: 20px\" class=\"secButton\" (click) = \"generateNextLevel()\" > Next level </button>\r\n<table *ngIf=\"width*height < 89\"  \r\n    id=\"mineBackgroundBig\" [ngStyle]=\"{'board': (width*height)}\">\r\n        <tr *ngFor=\"let row of space\">\r\n        <td *ngFor=\"let mineBox of row\">\r\n            <app-mine-box [mine]=\"mineBox.mine\" [superman]=\"mineBox.superman\" [flag]=\"mineBox.flag\" [revealed]=\"mineBox.revealed\" [danger]=\"mineBox.danger\" (click)=\"boxClicked($event,mineBox.i, mineBox.j)\"></app-mine-box>\r\n        </td>\r\n    </tr>\r\n</table>\r\n<table  *ngIf=\"width * height > 89\"\r\n    id=\"mineBackground\" [ngStyle]=\"{'board': (width*height)}\">\r\n        <tr *ngFor=\"let row of space\">\r\n        <td *ngFor=\"let mineBox of row\">\r\n            <app-mine-box [mine]=\"mineBox.mine\" [superman]=\"mineBox.superman\" [flag]=\"mineBox.flag\" [revealed]=\"mineBox.revealed\" [danger]=\"mineBox.danger\" (click)=\"boxClicked($event,mineBox.i, mineBox.j)\"></app-mine-box>\r\n        </td>\r\n    </tr>\r\n</table>\r\n<table  *ngIf=\"89 > width*height > 90001 \"\r\n    id=\"mineBackgroundSmall\" [ngStyle]=\"{'board': (width*height)}\">\r\n        <tr *ngFor=\"let row of space\">\r\n        <td *ngFor=\"let mineBox of row\">\r\n            <app-mine-box [mine]=\"mineBox.mine\" [superman]=\"mineBox.superman\" [flag]=\"mineBox.flag\" [revealed]=\"mineBox.revealed\" [danger]=\"mineBox.danger\" (click)=\"boxClicked($event,mineBox.i, mineBox.j)\"></app-mine-box>\r\n        </td>\r\n    </tr>\r\n</table>\r\n</b>\r\n\r\n</div>"
+module.exports = "<a [ngClass]=\"{'mine-box': true , \n'mine-bomb': revealed && mine,\n'mine-click': revealed && !mine && !flag,\n'mine-flag': (!revealed && flag && !superman) || (revealed && !mine && flag),\n'mine-superman': superman && !mine,\n'mine-flag-good-superman': superman && flag && mine,\n'mine-flag-bad-superman': superman && flag && !mine,\n'mine-bomb-superman': superman && mine && !revealed}\">\n    <i *ngIf=\"(superman && !mine && (danger>0)) || (revealed && !mine && (danger>0))\" style=\"font: bold;\">\n        {{danger}}\n    </i>\n</a>\n"
 
 /***/ }),
 
-/***/ 675:
-/***/ (function(module, exports) {
-
-module.exports = "<a [ngClass]=\"{'mine-box': true , \r\n'mine-bomb': revealed && mine,\r\n'mine-click': revealed && !mine && !flag,\r\n'mine-flag': (!revealed && flag && !superman) || (revealed && !mine && flag),\r\n'mine-superman': superman && !mine,\r\n'mine-flag-good-superman': superman && flag && mine,\r\n'mine-flag-bad-superman': superman && flag && !mine,\r\n'mine-bomb-superman': superman && mine && !revealed}\">\r\n    <i *ngIf=\"(superman && !mine && (danger>0)) || (revealed && !mine && (danger>0))\" style=\"font: bold;\">\r\n        {{danger}}\r\n    </i>\r\n</a>\r\n"
-
-/***/ }),
-
-/***/ 969:
+/***/ 954:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(404);
+module.exports = __webpack_require__(403);
 
 
 /***/ })
 
-},[969]);
+},[954]);
 //# sourceMappingURL=main.bundle.map

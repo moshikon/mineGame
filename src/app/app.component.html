@@ -8,10 +8,10 @@
   <a *ngIf="custom">
   Height:
   <input type="text" [(ngModel)]="width" (change)="onChange()" name="Height" >
-  <label style="font-size: 20px">(up to 300)</label> 
+  <label style="font-size: 20px"> (up to 300)</label>
   Width:
   <input type="text" [(ngModel)]="height" (change)="onChange()" name="Width" >
-  <label style="font-size: 20px">(up to 300)</label> 
+  <label style="font-size: 20px"> (up to 300)</label>
   Mines:
   <input  type="text" [(ngModel)]="mines" (change)="onChange()" name="Mines" >
   <br><button class="myButton" (click) = "restart()" > Play </button>
@@ -24,6 +24,7 @@
   <button class="myButton" (click) = "generate(3,1)" > Beginner </button>
   <button class="myButton" (click) = "generate(2,1)" > Normal </button>
   <button class="myButton" (click) = "generate(1,1)" > Pro </button></a>
+  
 </a>
 </h1>
 <b *ngIf = "restartTable" id="mid">
@@ -35,13 +36,13 @@
 <a  *ngIf = "won == lost" >Need some help?
 <br><img  src="./superman.png"  style="cursor:pointer;margin-left: 180px;margin-top: -45px; position:absolute" (click) = "superman()">
 <div style="font-size: 25px" >Instructions: </div>
-<div style="font-size: 18px;margin-left: 20px"> ☻ Left-click an empty square to reveal it.<br>
-☻ (Shift + Left-click) an empty square to flag it.<br>
-☻ Superman mood reveals the board.</div></a></h3>
+<div style="font-size: 18px;margin-left: 20px"> ☻Left-click an empty square to reveal it.<br>
+☻(Shift + Left-click) an empty square to flag it.<br>
+☻Superman mood reveals the board.</div></a></h3>
 <button style="margin-left: 20px" class="secButton" (click) = "restart()" > New Game </button>
 <button style="margin-left: 20px" class="secButton" (click) = "again()" > Restart </button>
 <button style="margin-left: 20px" class="secButton" (click) = "generateNextLevel()" > Next level </button>
-<table *ngIf="width*height < 89"  
+<table  *ngIf="width*height <= 89"
     id="mineBackgroundBig" [ngStyle]="{'board': (width*height)}">
         <tr *ngFor="let row of space">
         <td *ngFor="let mineBox of row">
@@ -49,16 +50,8 @@
         </td>
     </tr>
 </table>
-<table  *ngIf="width * height > 89"
+<table *ngIf="width*height > 89" 
     id="mineBackground" [ngStyle]="{'board': (width*height)}">
-        <tr *ngFor="let row of space">
-        <td *ngFor="let mineBox of row">
-            <app-mine-box [mine]="mineBox.mine" [superman]="mineBox.superman" [flag]="mineBox.flag" [revealed]="mineBox.revealed" [danger]="mineBox.danger" (click)="boxClicked($event,mineBox.i, mineBox.j)"></app-mine-box>
-        </td>
-    </tr>
-</table>
-<table  *ngIf="89 > width*height > 90001 "
-    id="mineBackgroundSmall" [ngStyle]="{'board': (width*height)}">
         <tr *ngFor="let row of space">
         <td *ngFor="let mineBox of row">
             <app-mine-box [mine]="mineBox.mine" [superman]="mineBox.superman" [flag]="mineBox.flag" [revealed]="mineBox.revealed" [danger]="mineBox.danger" (click)="boxClicked($event,mineBox.i, mineBox.j)"></app-mine-box>

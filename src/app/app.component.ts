@@ -28,16 +28,23 @@ export class AppComponent {
     flagsOnMines: number;
     custom: boolean;
     userLevel: number;
-    level: number;
     step: number;
+    level: number;
 
   constructor(private st: SimpleTimer) {}
   
-    startTimer(){
+      /**
+     * Setting and starting the timer
+     */
+    startTimer(): void{
         this.st.newTimer('1sec',1);
         this.st.subscribe('1sec', e => this.timer0callback());
     }
-    	timer0callback() {
+
+        /**
+     * Calculate time
+     */
+    	timer0callback(): void {
             if(!this.lost && !this.won){
                 this.counterSec++;
                 if(this.counterSec == 60) {
@@ -50,6 +57,9 @@ export class AppComponent {
 	    }
 }
 
+    /**
+     * Enable superman mood
+     */
 superman(): void{
     if(this.revealAll){
         this.revealAll = false;
@@ -68,7 +78,10 @@ superman(): void{
     }
 }
 
-  onChange() {
+    /**
+     * Checks that the UI according to the rules
+     */
+  onChange(): void {
         const max = 300;
         const min = 2;
         if (this.width > max) {
@@ -92,6 +105,9 @@ superman(): void{
         }
 }
 
+    /**
+     * Response to a box click
+     */
   boxClicked(event,i: number, j: number): void {
         if(!this.start){
             this.startTimer();
@@ -104,6 +120,9 @@ superman(): void{
         this.reveal(i, j);
  }
   
+      /**
+     * Generate the same game again
+     */
   public again(): void{
     this.onChange();
     this.st.delTimer('1sec');
@@ -125,6 +144,9 @@ superman(): void{
     this.generateDanger();      
   }
 
+    /**
+     * Generate a new game
+     */
   public restart(): void {
     if(this.restartTable){
         document.getElementById("myDiv").style.backgroundImage = "url('./back.jpg')";
@@ -135,11 +157,16 @@ superman(): void{
     this.again();
   }
 
-public customGame(custom: boolean){
+    /**
+     * Enter into custom page
+     */
+public customGame(custom: boolean): void{
     this.custom = custom;
 }
-
-  generate(userLevel:number ,level: number){
+    /**
+     * Generate the board by level
+     */
+  generate(userLevel:number ,level: number): void{
     this.userLevel = userLevel;
     this.level = level;
     this.step = 2;
@@ -150,7 +177,10 @@ public customGame(custom: boolean){
     this.again();
   }
 
-  generateNextLevel(){
+    /**
+     * Generate the board by level
+     */
+  generateNextLevel(user:number ,level: number): void{
     this.step++;
     this.width = Math.floor(10 * this.level/this.userLevel * this.step/2);
     this.height = Math.floor(15 * this.level/this.userLevel * this.step/2);
@@ -159,13 +189,17 @@ public customGame(custom: boolean){
     this.again();
   }
 
-    random(){
+      /**
+     * Generate random game
+     */
+    random(): void{
         this.width = Math.floor(Math.random() * 15);
         this.height = Math.floor(Math.random() * 15);
         this.mines = Math.floor(Math.random() * 10);
         this.onChange();
         this.again();
   }
+  
     /**
      * Generate mine of boxes into field
      */
@@ -199,54 +233,46 @@ public customGame(custom: boolean){
         for (let i = 0; i < this.width; i++) {
             for (let j = 0; j < this.height; j++) {
                 let danger = 0;
-                if (i !== 0) { // if is not in first row, i can chceck row abowe
-                    if (this.space[i - 1][j].getMine()) {
+                if (i !== 0) { // if is not in first row, i can check row abowe
+                    if (this.space[i - 1][j].getMine())
                         danger++;
-                    }
                 }
-                if (i !== this.width - 1) { // if is not in last row, i can chceck row under
-                    if (this.space[i + 1][j].getMine()) {
+                if (i !== this.width - 1) { // if is not in last row, i can check row under
+                    if (this.space[i + 1][j].getMine())
                         danger++;
-                    }
                 }
-                if (j !== 0) { // if is not in first col, i can chceck col left
-                    if (this.space[i][j - 1].getMine()) {
+                if (j !== 0) { // if is not in first col, i can check col left
+                    if (this.space[i][j - 1].getMine())
                         danger++;
-                    }
                 }
-                if (j !== this.height - 1) { // if is not in last col, i can chcek right col
-                    if (this.space[i][j + 1].getMine()) {
+                if (j !== this.height - 1) { // if is not in last col, i can check right col
+                    if (this.space[i][j + 1].getMine())
                         danger++;
-                    }
                 }
 
-                ////////Slant nextdoors//////////
+                //diagonal nextdoors
                 if (j !== this.height - 1) {
                     if (i !== this.width - 1) {
-                        if (this.space[i + 1][j + 1].getMine()) {
+                        if (this.space[i + 1][j + 1].getMine())
                             danger++;
-                        }
                     }
                 }
                 if (j !== 0) {
                     if (i !== 0) {
-                        if (this.space[i - 1][j - 1].getMine()) {
+                        if (this.space[i - 1][j - 1].getMine())
                             danger++;
-                        }
                     }
                 }
                 if (j !== this.height - 1) {
                     if (i !== 0) {
-                        if (this.space[i - 1][j + 1].getMine()) {
+                        if (this.space[i - 1][j + 1].getMine())
                             danger++;
-                        }
                     }
                 }
                 if (j !== 0) {
                     if (i !== this.width - 1) {
-                        if (this.space[i + 1][j - 1].getMine()) {
+                        if (this.space[i + 1][j - 1].getMine())
                             danger++;
-                        }
                     }
                 }
                 this.space[i][j].setDanger(danger);
@@ -261,7 +287,7 @@ public customGame(custom: boolean){
             this.space[i][j].setRevealed(true);
             this.revealedCount++;
             if (this.space[i][j].danger === 0) {
-                if (i + 1 < this.width) { // it is not last in row, so i can chcek next bombBox
+                if (i + 1 < this.width) { // it is not last in row, so i can check next bombBox
                     this.expand(i + 1, j);
                 }
                 if (j + 1 < this.height) { // it is not last in col
@@ -282,7 +308,7 @@ public customGame(custom: boolean){
     public reveal(i: number, j: number): void {
         if (!this.lost && !this.won) { // still can play
             if(this.space[i][j].getFlag()) return;
-            if (this.space[i][j].getMine()) { // ooops this box got mine
+            if (this.space[i][j].getMine()) {
                 this.space[i][j].setRevealed(true);
                 this.lost = true;
                 this.revealAll = false;
@@ -291,7 +317,7 @@ public customGame(custom: boolean){
                 return;
             }
             this.expand(i, j);
-            if (this.revealedCount === this.width * this.height - this.mines) { // all mine revealed yeah
+            if (this.revealedCount === this.width * this.height - this.mines) { // all mine revealed
                 this.won = true;
                 this.revealAll = false;
                 this.superman();
@@ -301,24 +327,26 @@ public customGame(custom: boolean){
         }
     }
 
+    /**
+     * Putting/removing a flag and update the count  
+     */
     public putFlag(i: number, j: number): void {
-            if (!this.lost && !this.won) { // still can play
-            if(this.space[i][j].getFlag()){
-                console.log("hhh")
+            if (!this.lost && !this.won) { 
+            if(this.space[i][j].getFlag()){ //already had a flag
                 this.space[i][j].setFlag(false);
                 this.flags++;
-                if(this.space[i][j].getMine()){
+                if(this.space[i][j].getMine()){ //take off a flag from a mine
                     this.flagsOnMines--;
             }
             }
-            else if(this.flags>0){
-                if(!this.space[i][j].isRevealed()){
+            else if(this.flags>0){ //still got flags to put?
+                if(!this.space[i][j].isRevealed()){ 
                     if(!this.space[i][j].getFlag()){
                     this.space[i][j].setFlag(true);
                     this.flags--;
                     if(this.space[i][j].getMine()){
                         this.flagsOnMines++;
-                        if(this.flagsOnMines == this.mines){
+                        if(this.flagsOnMines == this.mines){ //all mines cover with flags?
                             this.won = true;
                             this.revealAll = false;
                             this.superman();
